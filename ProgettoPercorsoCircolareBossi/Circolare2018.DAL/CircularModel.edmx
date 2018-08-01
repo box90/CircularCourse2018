@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_SiWeb3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="RefYear" Type="int" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="IsCircular" Type="bit" />
+          <Property Name="ID_Coordinator" Type="int" />
+        </EntityType>
+        <EntityType Name="RESOURCE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="8" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsAvaiable" Type="bit" />
+          <Property Name="IsCP" Type="bit" />
+        </EntityType>
+        <EntityType Name="SUBSCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Resource" Type="int" Nullable="false" />
+          <Property Name="ID_Course" Type="int" Nullable="false" />
+          <Property Name="ID_CP" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="MaxEndDate" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="IsAdmitted" Type="bit" />
+          <Property Name="Notes" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TEACHING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Resource" Type="int" Nullable="false" />
+          <Property Name="ID_Course" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__COURSE__ID_Coord__59FA5E80">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="0..1" />
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="COURSE">
+              <PropertyRef Name="ID_Coordinator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUBSCRIPT__ID_Co__60A75C0F">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION">
+              <PropertyRef Name="ID_Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUBSCRIPT__ID_CP__619B8048">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION">
+              <PropertyRef Name="ID_CP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUBSCRIPT__ID_Re__5FB337D6">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION">
+              <PropertyRef Name="ID_Resource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TEACHING__ID_Cou__6A30C649">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TEACHING">
+              <PropertyRef Name="ID_Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TEACHING__ID_Res__693CA210">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+          <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TEACHING">
+              <PropertyRef Name="ID_Resource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SetUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="surname" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="DB_SiWeb3ModelStoreContainer">
+          <EntitySet Name="COURSE" EntityType="Self.COURSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESOURCE" EntityType="Self.RESOURCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBSCRIPTION" EntityType="Self.SUBSCRIPTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEACHING" EntityType="Self.TEACHING" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__COURSE__ID_Coord__59FA5E80" Association="Self.FK__COURSE__ID_Coord__59FA5E80">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="COURSE" EntitySet="COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Co__60A75C0F" Association="Self.FK__SUBSCRIPT__ID_Co__60A75C0F">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUBSCRIPT__ID_CP__619B8048" Association="Self.FK__SUBSCRIPT__ID_CP__619B8048">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Re__5FB337D6" Association="Self.FK__SUBSCRIPT__ID_Re__5FB337D6">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACHING__ID_Cou__6A30C649" Association="Self.FK__TEACHING__ID_Cou__6A30C649">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="TEACHING" EntitySet="TEACHING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACHING__ID_Res__693CA210" Association="Self.FK__TEACHING__ID_Res__693CA210">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="TEACHING" EntitySet="TEACHING" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_SiWeb3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RefYear" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="IsCircular" Type="Boolean" />
+          <Property Name="ID_Coordinator" Type="Int32" />
+          <NavigationProperty Name="RESOURCE" Relationship="Self.FK__COURSE__ID_Coord__59FA5E80" FromRole="COURSE" ToRole="RESOURCE" />
+          <NavigationProperty Name="SUBSCRIPTION" Relationship="Self.FK__SUBSCRIPT__ID_Co__60A75C0F" FromRole="COURSE" ToRole="SUBSCRIPTION" />
+          <NavigationProperty Name="TEACHING" Relationship="Self.FK__TEACHING__ID_Cou__6A30C649" FromRole="COURSE" ToRole="TEACHING" />
+        </EntityType>
+        <EntityType Name="RESOURCE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsAvaiable" Type="Boolean" />
+          <Property Name="IsCP" Type="Boolean" />
+          <NavigationProperty Name="COURSE" Relationship="Self.FK__COURSE__ID_Coord__59FA5E80" FromRole="RESOURCE" ToRole="COURSE" />
+          <NavigationProperty Name="SUBSCRIPTION" Relationship="Self.FK__SUBSCRIPT__ID_CP__619B8048" FromRole="RESOURCE" ToRole="SUBSCRIPTION" />
+          <NavigationProperty Name="SUBSCRIPTION1" Relationship="Self.FK__SUBSCRIPT__ID_Re__5FB337D6" FromRole="RESOURCE" ToRole="SUBSCRIPTION" />
+          <NavigationProperty Name="TEACHING" Relationship="Self.FK__TEACHING__ID_Res__693CA210" FromRole="RESOURCE" ToRole="TEACHING" />
+        </EntityType>
+        <EntityType Name="SUBSCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Resource" Type="Int32" Nullable="false" />
+          <Property Name="ID_Course" Type="Int32" Nullable="false" />
+          <Property Name="ID_CP" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaxEndDate" Type="DateTime" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="IsAdmitted" Type="Boolean" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COURSE" Relationship="Self.FK__SUBSCRIPT__ID_Co__60A75C0F" FromRole="SUBSCRIPTION" ToRole="COURSE" />
+          <NavigationProperty Name="RESOURCE" Relationship="Self.FK__SUBSCRIPT__ID_CP__619B8048" FromRole="SUBSCRIPTION" ToRole="RESOURCE" />
+          <NavigationProperty Name="RESOURCE1" Relationship="Self.FK__SUBSCRIPT__ID_Re__5FB337D6" FromRole="SUBSCRIPTION" ToRole="RESOURCE" />
+        </EntityType>
+        <EntityType Name="TEACHING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Resource" Type="Int32" Nullable="false" />
+          <Property Name="ID_Course" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COURSE" Relationship="Self.FK__TEACHING__ID_Cou__6A30C649" FromRole="TEACHING" ToRole="COURSE" />
+          <NavigationProperty Name="RESOURCE" Relationship="Self.FK__TEACHING__ID_Res__693CA210" FromRole="TEACHING" ToRole="RESOURCE" />
+        </EntityType>
+        <Association Name="FK__COURSE__ID_Coord__59FA5E80">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="0..1" />
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="COURSE">
+              <PropertyRef Name="ID_Coordinator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUBSCRIPT__ID_Co__60A75C0F">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION">
+              <PropertyRef Name="ID_Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TEACHING__ID_Cou__6A30C649">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TEACHING">
+              <PropertyRef Name="ID_Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUBSCRIPT__ID_CP__619B8048">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION">
+              <PropertyRef Name="ID_CP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUBSCRIPT__ID_Re__5FB337D6">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION">
+              <PropertyRef Name="ID_Resource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TEACHING__ID_Res__693CA210">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+          <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESOURCE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TEACHING">
+              <PropertyRef Name="ID_Resource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_SiWeb3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COURSE" EntityType="Self.COURSE" />
+          <EntitySet Name="RESOURCE" EntityType="Self.RESOURCE" />
+          <EntitySet Name="SUBSCRIPTION" EntityType="Self.SUBSCRIPTION" />
+          <EntitySet Name="TEACHING" EntityType="Self.TEACHING" />
+          <AssociationSet Name="FK__COURSE__ID_Coord__59FA5E80" Association="Self.FK__COURSE__ID_Coord__59FA5E80">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="COURSE" EntitySet="COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Co__60A75C0F" Association="Self.FK__SUBSCRIPT__ID_Co__60A75C0F">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACHING__ID_Cou__6A30C649" Association="Self.FK__TEACHING__ID_Cou__6A30C649">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="TEACHING" EntitySet="TEACHING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUBSCRIPT__ID_CP__619B8048" Association="Self.FK__SUBSCRIPT__ID_CP__619B8048">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Re__5FB337D6" Association="Self.FK__SUBSCRIPT__ID_Re__5FB337D6">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACHING__ID_Res__693CA210" Association="Self.FK__TEACHING__ID_Res__693CA210">
+            <End Role="RESOURCE" EntitySet="RESOURCE" />
+            <End Role="TEACHING" EntitySet="TEACHING" />
+          </AssociationSet>
+          <FunctionImport Name="SetUserName" ReturnType="Collection(String)">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="surname" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_SiWeb3ModelStoreContainer" CdmEntityContainer="DB_SiWeb3Entities">
+          <EntitySetMapping Name="COURSE">
+            <EntityTypeMapping TypeName="DB_SiWeb3Model.COURSE">
+              <MappingFragment StoreEntitySet="COURSE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RefYear" ColumnName="RefYear" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="IsCircular" ColumnName="IsCircular" />
+                <ScalarProperty Name="ID_Coordinator" ColumnName="ID_Coordinator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESOURCE">
+            <EntityTypeMapping TypeName="DB_SiWeb3Model.RESOURCE">
+              <MappingFragment StoreEntitySet="RESOURCE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="IsAvaiable" ColumnName="IsAvaiable" />
+                <ScalarProperty Name="IsCP" ColumnName="IsCP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBSCRIPTION">
+            <EntityTypeMapping TypeName="DB_SiWeb3Model.SUBSCRIPTION">
+              <MappingFragment StoreEntitySet="SUBSCRIPTION">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Resource" ColumnName="ID_Resource" />
+                <ScalarProperty Name="ID_Course" ColumnName="ID_Course" />
+                <ScalarProperty Name="ID_CP" ColumnName="ID_CP" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="MaxEndDate" ColumnName="MaxEndDate" />
+                <ScalarProperty Name="IsAdmitted" ColumnName="IsAdmitted" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEACHING">
+            <EntityTypeMapping TypeName="DB_SiWeb3Model.TEACHING">
+              <MappingFragment StoreEntitySet="TEACHING">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Resource" ColumnName="ID_Resource" />
+                <ScalarProperty Name="ID_Course" ColumnName="ID_Course" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SetUserName" FunctionName="DB_SiWeb3Model.Store.SetUserName" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,11 @@
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\bin\Debug\Circolare2018.Entities.dll.config
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\bin\Debug\Circolare2018.Entities.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\bin\Debug\Circolare2018.Entities.pdb
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\bin\Debug\EntityFramework.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\bin\Debug\EntityFramework.xml
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\obj\Debug\Circolare2018.Entities.csproj.CoreCompileInputs.cache
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\obj\Debug\Circolare2018.Entities.csproj.CopyComplete
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\obj\Debug\Circolare2018.Entities.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Entities\obj\Debug\Circolare2018.Entities.pdb

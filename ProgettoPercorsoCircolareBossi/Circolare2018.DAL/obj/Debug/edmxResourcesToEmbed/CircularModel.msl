@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_SiWeb3ModelStoreContainer" CdmEntityContainer="DB_SiWeb3Entities">
+    <EntitySetMapping Name="COURSE">
+      <EntityTypeMapping TypeName="DB_SiWeb3Model.COURSE">
+        <MappingFragment StoreEntitySet="COURSE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RefYear" ColumnName="RefYear" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="IsCircular" ColumnName="IsCircular" />
+          <ScalarProperty Name="ID_Coordinator" ColumnName="ID_Coordinator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESOURCE">
+      <EntityTypeMapping TypeName="DB_SiWeb3Model.RESOURCE">
+        <MappingFragment StoreEntitySet="RESOURCE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="IsAvaiable" ColumnName="IsAvaiable" />
+          <ScalarProperty Name="IsCP" ColumnName="IsCP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBSCRIPTION">
+      <EntityTypeMapping TypeName="DB_SiWeb3Model.SUBSCRIPTION">
+        <MappingFragment StoreEntitySet="SUBSCRIPTION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Resource" ColumnName="ID_Resource" />
+          <ScalarProperty Name="ID_Course" ColumnName="ID_Course" />
+          <ScalarProperty Name="ID_CP" ColumnName="ID_CP" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="MaxEndDate" ColumnName="MaxEndDate" />
+          <ScalarProperty Name="IsAdmitted" ColumnName="IsAdmitted" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHING">
+      <EntityTypeMapping TypeName="DB_SiWeb3Model.TEACHING">
+        <MappingFragment StoreEntitySet="TEACHING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Resource" ColumnName="ID_Resource" />
+          <ScalarProperty Name="ID_Course" ColumnName="ID_Course" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SetUserName" FunctionName="DB_SiWeb3Model.Store.SetUserName" />
+  </EntityContainerMapping>
+</Mapping>
