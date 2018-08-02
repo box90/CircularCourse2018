@@ -41,3 +41,12 @@ create table [SUBSCRIPTION]
 	Notes			varchar(max),
 )
 
+IF OBJECT_ID('dbo.[TEACHING]', 'U') IS NOT NULL 
+	drop table [dbo].[TEACHING]
+create table [TEACHING]
+(
+	ID				int identity(1,1) primary key,
+	ID_Resource		int	not null foreign key references [Resource](ID),
+	ID_Course		int not null foreign key references [Course](ID),
+	Notes			varchar(max)
+)

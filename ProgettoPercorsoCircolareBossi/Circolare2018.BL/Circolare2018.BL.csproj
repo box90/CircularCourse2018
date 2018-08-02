@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CourseManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceManager.cs" />
+    <Compile Include="SubscriptionManager.cs" />
+    <Compile Include="TeacherManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Circolare2018.Entities\Circolare2018.Entities.csproj">
