@@ -47,6 +47,10 @@
     <Compile Include="TeacherManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Circolare2018.DAL\Circolare2018.DAL.csproj">
+      <Project>{012a2d89-be22-4ee7-bc59-37fce8d957e0}</Project>
+      <Name>Circolare2018.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Circolare2018.Entities\Circolare2018.Entities.csproj">
       <Project>{416f7fa3-4ab1-4bb3-8e89-e84afbbb55d7}</Project>
       <Name>Circolare2018.Entities</Name>

@@ -16,3 +16,5 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\obj\Debug\Circolare2018.Console.PL.csproj.CopyComplete
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\obj\Debug\Circolare2018.Console.PL.exe
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\obj\Debug\Circolare2018.Console.PL.pdb
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\EntityFramework.SqlServer.xml

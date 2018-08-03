@@ -8,3 +8,10 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\obj\Debug\Circolare2018.BL.csproj.CopyComplete
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\obj\Debug\Circolare2018.BL.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\obj\Debug\Circolare2018.BL.pdb
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\bin\Debug\Circolare2018.DAL.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\bin\Debug\EntityFramework.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\bin\Debug\Circolare2018.DAL.pdb
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\bin\Debug\Circolare2018.DAL.dll.config
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\bin\Debug\EntityFramework.xml
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.BL\bin\Debug\EntityFramework.SqlServer.xml
