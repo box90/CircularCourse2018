@@ -18,14 +18,14 @@ namespace Circolare2018.BL
         public static Entities.COURSE GetCourse(int id)
         {
             EFRepository<Entities.COURSE> repo = new EFRepository<Entities.COURSE>();
-            return repo.Find(x => x.ID == id).First();
+            return repo.Find(x => x.ID == id).FirstOrDefault();
         }
 
         public static bool UpdateCourse(Entities.COURSE courseToUpdate)
         {
             bool resultOperation = false;
             EFRepository<Entities.COURSE> repo = new EFRepository<Entities.COURSE>();
-            Entities.COURSE mod = repo.FindNoTracking(x => x.ID == courseToUpdate.ID).First();
+            Entities.COURSE mod = repo.FindNoTracking(x => x.ID == courseToUpdate.ID).FirstOrDefault();
 
             if (mod != null)
             {
@@ -49,7 +49,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.COURSE> repo = new EFRepository<Entities.COURSE>();
-            Entities.COURSE exists = repo.FindNoTracking(x => x.ID == courseToInsert.ID).First();
+            Entities.COURSE exists = repo.FindNoTracking(x => x.ID == courseToInsert.ID).FirstOrDefault();
 
             if (exists == null)
             {
@@ -73,7 +73,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.COURSE> repo = new EFRepository<Entities.COURSE>();
-            Entities.COURSE exists = repo.FindNoTracking(x => x.ID == id).First();
+            Entities.COURSE exists = repo.FindNoTracking(x => x.ID == id).FirstOrDefault();
 
             if (exists != null)
             {

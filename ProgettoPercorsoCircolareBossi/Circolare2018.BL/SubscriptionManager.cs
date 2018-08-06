@@ -18,14 +18,14 @@ namespace Circolare2018.BL
         public static Entities.SUBSCRIPTION GetSubscription(int id)
         {
             EFRepository<Entities.SUBSCRIPTION> repo = new EFRepository<Entities.SUBSCRIPTION>();
-            return repo.Find(x => x.ID == id).First();
+            return repo.Find(x => x.ID == id).FirstOrDefault();
         }
 
         public static bool UpdateSubscription(Entities.SUBSCRIPTION SubscriptionToUpdate)
         {
             bool resultOperation = false;
             EFRepository<Entities.SUBSCRIPTION> repo = new EFRepository<Entities.SUBSCRIPTION>();
-            Entities.SUBSCRIPTION mod = repo.FindNoTracking(x => x.ID == SubscriptionToUpdate.ID).First();
+            Entities.SUBSCRIPTION mod = repo.FindNoTracking(x => x.ID == SubscriptionToUpdate.ID).FirstOrDefault();
 
             if (mod != null)
             {
@@ -49,7 +49,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.SUBSCRIPTION> repo = new EFRepository<Entities.SUBSCRIPTION>();
-            Entities.SUBSCRIPTION exists = repo.FindNoTracking(x => x.ID == SubscriptionToInsert.ID).First();
+            Entities.SUBSCRIPTION exists = repo.FindNoTracking(x => x.ID == SubscriptionToInsert.ID).FirstOrDefault();
 
             if (exists == null)
             {
@@ -73,7 +73,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.SUBSCRIPTION> repo = new EFRepository<Entities.SUBSCRIPTION>();
-            Entities.SUBSCRIPTION exists = repo.FindNoTracking(x => x.ID == id).First();
+            Entities.SUBSCRIPTION exists = repo.FindNoTracking(x => x.ID == id).FirstOrDefault();
 
             if (exists != null)
             {

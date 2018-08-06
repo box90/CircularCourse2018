@@ -30,5 +30,20 @@ namespace Circolare2018.SL.Models
                 ID_Coordinator = course.ID_Coordinator
             };
         }
+
+        public static Entities.COURSE MapEntities(CourseModel model)
+        {
+            return new Entities.COURSE
+            {
+                ID = model.ID,
+                Title = model.Title,
+                Description = model.Description,
+                RefYear = model.RefYear,
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                IsCircular = model.IsCircular,
+                ID_Coordinator = model.ID_Coordinator
+            };
+        }
     }
 }

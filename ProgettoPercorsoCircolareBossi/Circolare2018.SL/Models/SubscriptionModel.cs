@@ -30,5 +30,20 @@ namespace Circolare2018.SL.Models
                 Notes = subscription.Notes
             };
         }
+
+        public static Entities.SUBSCRIPTION MapEntities(SubscriptionModel model)
+        {
+            return new Entities.SUBSCRIPTION
+            {
+                ID = model.ID,
+                ID_Resource = model.ID_Resource,
+                ID_Course = model.ID_Course,
+                ID_CP = model.ID_CP,
+                StartDate = model.StartDate,
+                MaxEndDate = model.MaxEndDate,
+                IsAdmitted = model.IsAdmitted,
+                Notes = model.Notes
+            };
+        }
     }
 }

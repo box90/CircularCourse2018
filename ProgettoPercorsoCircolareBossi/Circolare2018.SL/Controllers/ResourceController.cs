@@ -33,7 +33,7 @@ namespace Circolare2018.SL.Controllers
         }
 
         [Route("update")]
-        public IHttpActionResult UpdateResource([FromBody] ResourceModel model)
+        public IHttpActionResult UpdateResource([FromBody]ResourceModel model)
         {
             bool isModified = ResourceManager.UpdateResource(ResourceModel.MapEntities(model));
             if (isModified)
@@ -45,9 +45,9 @@ namespace Circolare2018.SL.Controllers
         }
 
         [Route("insert")]
-        public IHttpActionResult InsertResource(Entities.RESOURCE resToInsert)
+        public IHttpActionResult InsertResource([FromBody]ResourceModel modelToInsert)
         {
-            bool isInserted = ResourceManager.InsertResource(resToInsert);
+            bool isInserted = ResourceManager.InsertResource(ResourceModel.MapEntities(modelToInsert));
             if (isInserted)
             {
                 return Ok();
@@ -56,6 +56,7 @@ namespace Circolare2018.SL.Controllers
             return NotFound();
         }
 
+        [HttpDelete]
         [Route("remove/{id:int}")]
         public IHttpActionResult RemoveResource(int id)
         {

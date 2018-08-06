@@ -22,5 +22,16 @@ namespace Circolare2018.SL.Models
                 Notes = teaching.Notes
             };
         }
+
+        public static Entities.TEACHING MapEntities(TeacherModel model)
+        {
+            return new Entities.TEACHING
+            {
+                ID = model.ID,
+                ID_Resource = model.ID_Resource,
+                ID_Course = model.ID_Resource,
+                Notes = model.Notes
+            };
+        }
     }
 }

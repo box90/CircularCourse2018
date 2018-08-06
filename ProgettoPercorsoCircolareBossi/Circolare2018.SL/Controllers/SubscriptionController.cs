@@ -33,9 +33,9 @@ namespace Circolare2018.SL.Controllers
         }
 
         [Route("update")]
-        public IHttpActionResult UpdateSubscription(Entities.SUBSCRIPTION subToUpdate)
+        public IHttpActionResult UpdateSubscription([FromBody]SubscriptionModel subToUpdate)
         {
-            bool isModified = SubscriptionManager.UpdateSubscription(subToUpdate);
+            bool isModified = SubscriptionManager.UpdateSubscription(SubscriptionModel.MapEntities(subToUpdate));
             if (isModified)
             {
                 return Ok();
@@ -45,9 +45,9 @@ namespace Circolare2018.SL.Controllers
         }
 
         [Route("insert")]
-        public IHttpActionResult InsertSubscription(Entities.SUBSCRIPTION subToInsert)
+        public IHttpActionResult InsertSubscription([FromBody]SubscriptionModel subToInsert)
         {
-            bool isInserted = SubscriptionManager.InsertSubscription(subToInsert);
+            bool isInserted = SubscriptionManager.InsertSubscription(SubscriptionModel.MapEntities(subToInsert));
             if (isInserted)
             {
                 return Ok();
@@ -56,6 +56,7 @@ namespace Circolare2018.SL.Controllers
             return NotFound();
         }
 
+        [HttpDelete]
         [Route("remove/{id:int}")]
         public IHttpActionResult RemoveSubscription(int id)
         {

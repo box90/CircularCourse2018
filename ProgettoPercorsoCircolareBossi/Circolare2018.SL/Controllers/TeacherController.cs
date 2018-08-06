@@ -33,9 +33,9 @@ namespace Circolare2018.SL.Controllers
         }
 
         [Route("update")]
-        public IHttpActionResult UpdateTeacher(Entities.TEACHING teachToUpdate)
+        public IHttpActionResult UpdateTeacher([FromBody]TeacherModel teachToUpdate)
         {
-            bool isModified = TeacherManager.UpdateTeaching(teachToUpdate);
+            bool isModified = TeacherManager.UpdateTeaching(TeacherModel.MapEntities(teachToUpdate));
             if (isModified)
             {
                 return Ok();
@@ -45,9 +45,9 @@ namespace Circolare2018.SL.Controllers
         }
 
         [Route("insert")]
-        public IHttpActionResult InsertTeacher(Entities.TEACHING teachToInsert)
+        public IHttpActionResult InsertTeacher([FromBody]TeacherModel teachToInsert)
         {
-            bool isInserted = TeacherManager.InsertTeaching(teachToInsert);
+            bool isInserted = TeacherManager.InsertTeaching(TeacherModel.MapEntities(teachToInsert));
             if (isInserted)
             {
                 return Ok();
@@ -56,6 +56,7 @@ namespace Circolare2018.SL.Controllers
             return NotFound();
         }
 
+        [HttpDelete]
         [Route("remove/{id:int}")]
         public IHttpActionResult RemoveTeacher(int id)
         {
