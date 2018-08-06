@@ -27,7 +27,7 @@ namespace Circolare2018.BL
             bool resultOperation = false;
 
             EFRepository<Entities.RESOURCE> repo = new EFRepository<Entities.RESOURCE>();
-            Entities.RESOURCE mod = repo.Find(x => x.ID == resourceToUpdate.ID).First();
+            Entities.RESOURCE mod = repo.FindNoTracking(x => x.ID == resourceToUpdate.ID).First();
 
             if (mod != null)
             {
@@ -52,7 +52,7 @@ namespace Circolare2018.BL
             bool resultOperation = false;
 
             EFRepository<Entities.RESOURCE> repo = new EFRepository<Entities.RESOURCE>();
-            Entities.RESOURCE exists = repo.Find(x => x.ID == resourceToInsert.ID).First();
+            Entities.RESOURCE exists = repo.FindNoTracking(x => x.ID == resourceToInsert.ID).First();
 
             if (exists == null)    //check if already exists
             {
@@ -92,7 +92,7 @@ namespace Circolare2018.BL
             bool resultOperation = false;
 
             EFRepository<Entities.RESOURCE> repo = new EFRepository<Entities.RESOURCE>();
-            Entities.RESOURCE exists = repo.Find(x => x.ID == Id).First();
+            Entities.RESOURCE exists = repo.FindNoTracking(x => x.ID == Id).First();
 
             if (exists != null)
             {

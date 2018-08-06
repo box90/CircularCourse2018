@@ -25,7 +25,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.TEACHING> repo = new EFRepository<Entities.TEACHING>();
-            Entities.TEACHING mod = repo.Find(x => x.ID == TeachingToUpdate.ID).First();
+            Entities.TEACHING mod = repo.FindNoTracking(x => x.ID == TeachingToUpdate.ID).First();
 
             if (mod != null)
             {
@@ -49,7 +49,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.TEACHING> repo = new EFRepository<Entities.TEACHING>();
-            Entities.TEACHING exists = repo.Find(x => x.ID == TeachingToInsert.ID).First();
+            Entities.TEACHING exists = repo.FindNoTracking(x => x.ID == TeachingToInsert.ID).First();
 
             if (exists == null)
             {
@@ -73,7 +73,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.TEACHING> repo = new EFRepository<Entities.TEACHING>();
-            Entities.TEACHING exists = repo.Find(x => x.ID == id).First();
+            Entities.TEACHING exists = repo.FindNoTracking(x => x.ID == id).First();
 
             if (exists != null)
             {

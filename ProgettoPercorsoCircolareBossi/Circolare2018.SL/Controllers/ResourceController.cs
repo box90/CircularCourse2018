@@ -33,9 +33,9 @@ namespace Circolare2018.SL.Controllers
         }
 
         [Route("update")]
-        public IHttpActionResult UpdateResource(Entities.RESOURCE resToUpdate)
+        public IHttpActionResult UpdateResource([FromBody] ResourceModel model)
         {
-            bool isModified = ResourceManager.UpdateResource(resToUpdate);
+            bool isModified = ResourceManager.UpdateResource(ResourceModel.MapEntities(model));
             if (isModified)
             {
                 return Ok();

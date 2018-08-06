@@ -26,5 +26,18 @@ namespace Circolare2018.SL.Models
                 IsCP = resource.IsCP
             };
         }
+
+        public static Entities.RESOURCE MapEntities(ResourceModel model)
+        {
+            return new Entities.RESOURCE
+            {
+                ID = model.ID,
+                UserName = model.UserName,
+                Name = model.Name,
+                Surname = model.Surname,
+                IsAvaiable = model.IsAvaiable,
+                IsCP = model.IsCP
+            };
+        }
     }
 }

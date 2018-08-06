@@ -25,7 +25,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.SUBSCRIPTION> repo = new EFRepository<Entities.SUBSCRIPTION>();
-            Entities.SUBSCRIPTION mod = repo.Find(x => x.ID == SubscriptionToUpdate.ID).First();
+            Entities.SUBSCRIPTION mod = repo.FindNoTracking(x => x.ID == SubscriptionToUpdate.ID).First();
 
             if (mod != null)
             {
@@ -49,7 +49,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.SUBSCRIPTION> repo = new EFRepository<Entities.SUBSCRIPTION>();
-            Entities.SUBSCRIPTION exists = repo.Find(x => x.ID == SubscriptionToInsert.ID).First();
+            Entities.SUBSCRIPTION exists = repo.FindNoTracking(x => x.ID == SubscriptionToInsert.ID).First();
 
             if (exists == null)
             {
@@ -73,7 +73,7 @@ namespace Circolare2018.BL
         {
             bool resultOperation = false;
             EFRepository<Entities.SUBSCRIPTION> repo = new EFRepository<Entities.SUBSCRIPTION>();
-            Entities.SUBSCRIPTION exists = repo.Find(x => x.ID == id).First();
+            Entities.SUBSCRIPTION exists = repo.FindNoTracking(x => x.ID == id).First();
 
             if (exists != null)
             {

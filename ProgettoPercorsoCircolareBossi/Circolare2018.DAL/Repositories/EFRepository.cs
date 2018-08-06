@@ -104,5 +104,10 @@ namespace Circolare2018.DAL.Repositories
         {
             return DbSet.Where<TEntity>(where).Include(propToLoad).SingleOrDefault();
         }
+
+        public IEnumerable<TEntity> FindNoTracking(Expression<Func<TEntity, bool>> where)
+        {
+            return DbSet.AsNoTracking().Where<TEntity>(where);
+        }
     }
 }
