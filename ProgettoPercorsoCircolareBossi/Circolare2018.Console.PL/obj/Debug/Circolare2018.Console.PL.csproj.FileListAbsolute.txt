@@ -8,7 +8,6 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\Circolare2018.BL.pdb
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\Circolare2018.DAL.pdb
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\Circolare2018.DAL.dll.config
-C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\EntityFramework.xml
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\Circolare2018.Entities.pdb
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\bin\Debug\Circolare2018.Entities.dll.config
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.Console.PL\obj\Debug\Circolare2018.Console.PL.csprojAssemblyReference.cache

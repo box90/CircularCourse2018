@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circolare2018.Console.PL", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circolare2018.SL", "Circolare2018.SL\Circolare2018.SL.csproj", "{4967795D-E42C-4D4C-B223-19D55B393896}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circolare2018.PL", "Circolare2018.PL\Circolare2018.PL.csproj", "{567766FC-5567-4991-9BEB-7375D02ED296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4967795D-E42C-4D4C-B223-19D55B393896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4967795D-E42C-4D4C-B223-19D55B393896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4967795D-E42C-4D4C-B223-19D55B393896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567766FC-5567-4991-9BEB-7375D02ED296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567766FC-5567-4991-9BEB-7375D02ED296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567766FC-5567-4991-9BEB-7375D02ED296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567766FC-5567-4991-9BEB-7375D02ED296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
