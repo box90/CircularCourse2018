@@ -1,20 +1,26 @@
 use DB_SiWeb3
 
+--Remove Refuse
+IF OBJECT_ID('dbo.[SUBSCRIPTION]', 'U') IS NOT NULL 
+	drop table [dbo].[SUBSCRIPTION]
+IF OBJECT_ID('dbo.[TEACHING]', 'U') IS NOT NULL 
+	drop table [dbo].[TEACHING]
+IF OBJECT_ID('dbo.COURSE', 'U') IS NOT NULL 
+	drop table [dbo].[COURSE]
 IF OBJECT_ID('dbo.RESOURCE', 'U') IS NOT NULL 
 	drop table [dbo].[RESOURCE]
+
+--Creations
 create table [RESOURCE]
 (
 	ID				int primary key,
 	UserName		varchar(8),
 	[Name]			varchar(20) not null,
-	[Surname]		varchar(20) not null unique,
+	[Surname]		varchar(20) not null,
 	IsAvaiable		bit default 1,
 	IsCP			bit default 0
 )
 	
-
-IF OBJECT_ID('dbo.COURSE', 'U') IS NOT NULL 
-	drop table [dbo].[COURSE]
 create table [COURSE]
 (
 	ID				int identity(1,1) primary key,
@@ -27,8 +33,6 @@ create table [COURSE]
 	ID_Coordinator	int foreign key references [Resource](ID)
 )
 
-IF OBJECT_ID('dbo.[SUBSCRIPTION]', 'U') IS NOT NULL 
-	drop table [dbo].[SUBSCRIPTION]
 create table [SUBSCRIPTION]
 (
 	ID				int identity(1,1) primary key,
@@ -41,8 +45,6 @@ create table [SUBSCRIPTION]
 	Notes			varchar(max),
 )
 
-IF OBJECT_ID('dbo.[TEACHING]', 'U') IS NOT NULL 
-	drop table [dbo].[TEACHING]
 create table [TEACHING]
 (
 	ID				int identity(1,1) primary key,
