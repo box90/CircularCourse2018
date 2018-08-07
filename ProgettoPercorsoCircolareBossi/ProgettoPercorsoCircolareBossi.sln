@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circolare2018.Console.PL", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circolare2018.SL", "Circolare2018.SL\Circolare2018.SL.csproj", "{4967795D-E42C-4D4C-B223-19D55B393896}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circolare2018.PL", "Circolare2018.PL\Circolare2018.PL.csproj", "{567766FC-5567-4991-9BEB-7375D02ED296}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console2018.PL", "Console2018.Web.PL\Console2018.PL.csproj", "{F01243B1-0B43-4B06-94FA-18E0A6B0BE83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{4967795D-E42C-4D4C-B223-19D55B393896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4967795D-E42C-4D4C-B223-19D55B393896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4967795D-E42C-4D4C-B223-19D55B393896}.Release|Any CPU.Build.0 = Release|Any CPU
-		{567766FC-5567-4991-9BEB-7375D02ED296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{567766FC-5567-4991-9BEB-7375D02ED296}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{567766FC-5567-4991-9BEB-7375D02ED296}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{567766FC-5567-4991-9BEB-7375D02ED296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F01243B1-0B43-4B06-94FA-18E0A6B0BE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F01243B1-0B43-4B06-94FA-18E0A6B0BE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F01243B1-0B43-4B06-94FA-18E0A6B0BE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F01243B1-0B43-4B06-94FA-18E0A6B0BE83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
