@@ -1,4 +1,7 @@
+"use strict";
 var _this = this;
+Object.defineProperty(exports, "__esModule", { value: true });
+var $ = require("jquery");
 //#region Classes
 var Resource = /** @class */ (function () {
     function Resource() {
@@ -32,6 +35,23 @@ function GetResources() {
        $('#select-user-titles').append('<option value="' + item.Id + '">' + item.Description + '</option>');
    });
  */
+/*
+ $('#grid').grid({
+    dataSource: data,
+    uiLibrary: 'bootstrap',
+    columns: [
+      { field: 'ID', width: 32 },
+      { field: 'Name', sortable: true },
+      { field: 'PlaceOfBirth', title: 'Place Of Birth', sortable: true },
+      { title: '', field: 'Edit', width: 34, type: 'icon', icon: 'glyphicon-pencil', tooltip: 'Edit', events: { 'click': Edit } },
+                    { title: '', field: 'Delete', width: 34, type: 'icon', icon: 'glyphicon-remove', tooltip: 'Delete', events: { 'click': Delete } }
+    ],
+    pager: { limit: 5 }
+  });
+ */
+function PrintResources(resources) {
+    //$.each(resources, (key, item: Resource) => {        });
+}
 function GetResource(id) {
     var tmp = null;
     $.getJSON(webApiUri + '/resource/' + id)

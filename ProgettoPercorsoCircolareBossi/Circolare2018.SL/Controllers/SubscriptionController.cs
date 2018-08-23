@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Circolare2018.SL.Controllers
 {
     [RoutePrefix("api/subscription")]
+    [EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
     public class SubscriptionController : ApiController
     {
         public IHttpActionResult GetAll()

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Circolare2018.BL;
 using Circolare2018.SL.Models;
 
 namespace Circolare2018.SL.Controllers
 {
     [RoutePrefix("api/resource")]
+    [EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
     public class ResourceController : ApiController
     {
         public IHttpActionResult GetAll()

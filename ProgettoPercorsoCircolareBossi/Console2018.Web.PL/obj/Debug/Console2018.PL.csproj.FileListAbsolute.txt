@@ -17,16 +17,13 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.AppContext.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Console.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Diagnostics.StackTrace.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.IO.Compression.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.IO.Pipes.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Reflection.Metadata.dll
@@ -38,7 +35,6 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Security.Principal.Windows.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Threading.Thread.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.ValueTuple.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Xml.ReaderWriter.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.Xml.XmlDocument.dll
@@ -79,3 +75,8 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\obj\Debug\Console2018.PL.csproj.CopyComplete
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\obj\Debug\Console2018.Web.PL.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\obj\Debug\Console2018.Web.PL.pdb
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\System.Web.Http.Cors.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\System.Web.Cors.dll
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\System.Web.Http.Cors.xml
