@@ -1,4 +1,4 @@
-﻿
+﻿import { webApiUri } from './shared'
 
 //#region Classes
 class Resource {
@@ -13,7 +13,7 @@ class Resource {
 
 
 //#region Variables
-const webApiUri: string = 'http://localhost:53141/api';
+//const webApiUri: string = 'http://localhost:53141/api';
 let retrievedResources: Resource[] = [];
 //#endregion
 

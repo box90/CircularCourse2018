@@ -160,7 +160,11 @@
   <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="scripts\application\app.ts" />
+    <TypeScriptCompile Include="scripts\application\course.ts" />
     <TypeScriptCompile Include="scripts\application\resource.ts" />
+    <TypeScriptCompile Include="scripts\application\shared.ts" />
+    <TypeScriptCompile Include="scripts\application\subscription.ts" />
+    <TypeScriptCompile Include="scripts\application\teacher.ts" />
     <TypeScriptCompile Include="scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>

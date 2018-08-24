@@ -1,0 +1,1 @@
+﻿export const webApiUri: string = 'http://localhost:53141/api';

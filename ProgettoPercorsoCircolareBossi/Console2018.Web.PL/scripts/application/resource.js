@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var shared_1 = require("./shared");
 //#region Classes
 var Resource = /** @class */ (function () {
     function Resource() {
@@ -6,7 +9,7 @@ var Resource = /** @class */ (function () {
 }());
 //#endregion
 //#region Variables
-var webApiUri = 'http://localhost:53141/api';
+//const webApiUri: string = 'http://localhost:53141/api';
 var retrievedResources = [];
 //#endregion
 //#region Code
@@ -17,7 +20,7 @@ $(document).ready(function () {
 });
 function GetResources() {
     var tmp = [];
-    $.getJSON(webApiUri + '/resource')
+    $.getJSON(shared_1.webApiUri + '/resource')
         .done(function (resources) {
         tmp = resources;
     })
@@ -53,7 +56,7 @@ function PrintResources(resources) {
 }
 function GetResource(id) {
     var tmp = null;
-    $.getJSON(webApiUri + '/resource/' + id)
+    $.getJSON(shared_1.webApiUri + '/resource/' + id)
         .done(function (res) {
         tmp = res;
     })
