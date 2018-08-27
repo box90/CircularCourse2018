@@ -79,6 +79,8 @@
     <Content Include="pages\course\HomePageCourse.html" />
     <Content Include="index.html" />
     <Content Include="pages\resource\HomePageResource.html" />
+    <Content Include="pages\subscriptions\HomePageSubscriptions.html" />
+    <Content Include="pages\teachers\HomePageTeachers.html" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
     <Content Include="scripts\bootstrap.js" />

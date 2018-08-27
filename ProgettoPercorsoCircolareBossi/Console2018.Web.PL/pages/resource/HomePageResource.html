@@ -3,59 +3,80 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" href="../../Content/bootstrap.css">
+    <meta name="description" content="Progetto PercorsoCircolare 2018">
+    <meta name="author" content="Marco Bossi">
+    <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Resources</title>
+    <title>Progetto PercorsoCircolare 2018</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Main content
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>User Titles</h2>
-                    <p>A list of out User Titles</p>
-                    <ul class="list-group" id="list-of-user-titles"></ul>
-                </div>
-                <div class="col-md-6">
-                    <h2>Users</h2>
-                    <p>A list of our Users</p>
-                    <ul class="list-group" id="list-of-users"></ul>
-                </div>
-            </div>
-        </div>
-    -->
-    <!------ Main part ---------->
-    <div class="container-full">
-        <div class="row" style="margin-top: 10px">
-            <div class="col-xs-12">
-                <table id="grid"></table>
-            </div>
-        </div>
-    </div>
-    <!--
-            <div id="dialog" style="hidden">
-                <input type="hidden" id="ID" />
-                <form>
-                    <div class="form-group">
-                        <label for="Name">Name</label>
-                        <input type="text" class="form-control" id="Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="PlaceOfBirth">Place Of Birth</label>
-                        <input type="text" class="form-control" id="PlaceOfBirth" />
-                    </div>
-                    <button type="button" id="btnSave" class="btn btn-default">Save</button>
-                    <button type="button" id="btnCancel" class="btn btn-default">Cancel</button>
-                </form>
-            </div>
-    -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Circolare2018</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <script src="../../scripts/jquery-3.3.1.min.js"></script>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Percorso Circolare 2018</h1>
+                <p>WebApp di gestione dei Percorsi Circolari (e non).</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row" style="margin-top: 10px">
+                <div class="col-xs-12">
+                    <table id="grid"></table>
+                </div>
+            </div>
+
+            <hr>
+
+        </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+        <p>&copy; Edizione 2018</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../script/jquery-3.3.1.slim.min.js"><\/script>')</script>
     <script src="../../scripts/bootstrap.min.js"></script>
-    <script src="../../scripts/application/resource.ts"></script>
+    <script src="../../scripts/application/resource.js"></script>
+
+
+
 </body>
-    </html>
+</html>
