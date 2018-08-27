@@ -45,4 +45,63 @@ function GetCourse(id: number): Course {
 
     return tmp;
 }
+
+
+function createCourse(): void {
+    $.ajax({
+        type: "POST",
+        url: webApiUri + '/course/insert',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            /*
+            UserTitleId: $('#select-user-titles').val(),
+            Username: $('#user-username').val(),
+            Surname: $('#user-surname').val(),
+            Name: $('#user-name').val()
+            */
+            //inserire i campi del form dei dettagli del corso
+        })
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetCourses();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while creating Course");
+    });
+}
+
+function updateCourse(): void {
+    $.ajax({
+        type: "PUT", //controllare se PUT
+        url: webApiUri + '/course/update',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            //inserire i campi del form dei dettagli del corso
+        })
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetCourses();
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert("An error has occurred while updating Course");
+    });
+}
+
+
+
+function deleteCourse(courseId: number): void {
+    if (!confirm('Remove Course?')) {
+        return;
+    }
+    $.ajax({
+        type: "DELETE",
+        url: webApiUri + '/course/remove/?id=' + courseId,
+        contentType: 'application/json'
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetCourses();
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert("An error has occurred while deleting Course " + courseId);
+    });
+}
+
+
 //#endregion

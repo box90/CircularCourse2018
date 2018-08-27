@@ -14,6 +14,7 @@ namespace Circolare2018.SL.Controllers
     [EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
     public class ResourceController : ApiController
     {
+        [HttpGet]
         public IHttpActionResult GetAll()
         {
             List<ResourceModel> Rmodel = new List<ResourceModel>();
@@ -26,6 +27,7 @@ namespace Circolare2018.SL.Controllers
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Rmodel));
         }
 
+        [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetResource(int id)
         {
@@ -34,6 +36,7 @@ namespace Circolare2018.SL.Controllers
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Rmodel));
         }
 
+        [HttpPut]
         [Route("update")]
         public IHttpActionResult UpdateResource([FromBody]ResourceModel model)
         {
@@ -46,6 +49,7 @@ namespace Circolare2018.SL.Controllers
             return NotFound();
         }
 
+        [HttpPost]
         [Route("insert")]
         public IHttpActionResult InsertResource([FromBody]ResourceModel modelToInsert)
         {

@@ -65,5 +65,56 @@ function GetResource(id) {
     });
     return tmp;
 }
-//endregion
+function createResource() {
+    $.ajax({
+        type: "POST",
+        url: shared_1.webApiUri + '/resource/insert',
+        contentType: 'application/json',
+        data: JSON.stringify({
+        /*
+        UserTitleId: $('#select-user-titles').val(),
+        Username: $('#user-username').val(),
+        Surname: $('#user-surname').val(),
+        Name: $('#user-name').val()
+        */
+        //inserire i campi del form dei dettagli della risorsa
+        })
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetResources();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while creating Resource");
+    });
+}
+function updateResource() {
+    $.ajax({
+        type: "PUT",
+        url: shared_1.webApiUri + '/resource/update',
+        contentType: 'application/json',
+        data: JSON.stringify({
+        //inserire i campi del form dei dettagli della risorsa
+        })
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetResources();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while updating Resource");
+    });
+}
+function deleteResource(resourceId) {
+    if (!confirm('Remove Resource?')) {
+        return;
+    }
+    $.ajax({
+        type: "DELETE",
+        url: shared_1.webApiUri + '/resource/remove/?id=' + resourceId,
+        contentType: 'application/json'
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetResources();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while deleting Resource " + resourceId);
+    });
+}
+//#endregion
 //# sourceMappingURL=resource.js.map

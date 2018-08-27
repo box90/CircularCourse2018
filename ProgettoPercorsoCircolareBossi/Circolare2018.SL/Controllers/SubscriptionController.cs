@@ -14,6 +14,7 @@ namespace Circolare2018.SL.Controllers
     [EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
     public class SubscriptionController : ApiController
     {
+        [HttpGet]
         public IHttpActionResult GetAll()
         {
             List<SubscriptionModel> Smodel = new List<SubscriptionModel>();
@@ -26,6 +27,7 @@ namespace Circolare2018.SL.Controllers
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Smodel));
         }
 
+        [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetSubscription(int id)
         {
@@ -34,6 +36,7 @@ namespace Circolare2018.SL.Controllers
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Smodel));
         }
 
+        [HttpPut]
         [Route("update")]
         public IHttpActionResult UpdateSubscription([FromBody]SubscriptionModel subToUpdate)
         {
@@ -46,6 +49,7 @@ namespace Circolare2018.SL.Controllers
             return NotFound();
         }
 
+        [HttpPost]
         [Route("insert")]
         public IHttpActionResult InsertSubscription([FromBody]SubscriptionModel subToInsert)
         {

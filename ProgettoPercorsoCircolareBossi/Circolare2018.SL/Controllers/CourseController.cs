@@ -14,6 +14,7 @@ namespace Circolare2018.SL.Controllers
     [EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
     public class CourseController : ApiController
     {
+        [HttpGet]
         public IHttpActionResult GetAll()
         {
             List<CourseModel> Cmodel = new List<CourseModel>();
@@ -26,6 +27,7 @@ namespace Circolare2018.SL.Controllers
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Cmodel));
         }
 
+        [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetCourse(int id)
         {
@@ -34,6 +36,7 @@ namespace Circolare2018.SL.Controllers
             return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Cmodel));
         }
 
+        [HttpPut]
         [Route("update")]
         public IHttpActionResult UpdateCourse([FromBody]CourseModel courseToUpdate)
         {
@@ -46,6 +49,7 @@ namespace Circolare2018.SL.Controllers
             return NotFound();
         }
 
+        [HttpPost]
         [Route("insert")]
         public IHttpActionResult InsertCourse([FromBody]CourseModel courseToInsert)
         {

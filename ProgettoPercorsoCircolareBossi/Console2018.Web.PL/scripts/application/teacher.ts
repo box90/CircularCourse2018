@@ -42,4 +42,61 @@ function GetTeacher(id: number): Teacher {
 
     return tmp;
 }
+
+
+function createTeacher(): void {
+    $.ajax({
+        type: "POST",
+        url: webApiUri + '/teacher/insert',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            /*
+            UserTitleId: $('#select-user-titles').val(),
+            Username: $('#user-username').val(),
+            Surname: $('#user-surname').val(),
+            Name: $('#user-name').val()
+            */
+            //inserire i campi del form dei dettagli della risorsa
+        })
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetTeachers();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while creating Teacher");
+    });
+}
+
+function updateTeacher(): void {
+    $.ajax({
+        type: "PUT", //controllare se PUT
+        url: webApiUri + '/teacher/update',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            //inserire i campi del form dei dettagli della risorsa
+        })
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetTeachers();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while updating Teacher");
+    });
+}
+
+
+function deleteTeacher(resourceId: number): void {
+    if (!confirm('Remove Teacher?')) {
+        return;
+    }
+    $.ajax({
+        type: "DELETE",
+        url: webApiUri + '/teacher/remove/?id=' + resourceId,
+        contentType: 'application/json'
+    }).done(function (data) {
+        //console.log(JSON.stringify(data));
+        this.GetTeachers();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while deleting Teacher " + resourceId);
+    });
+}
+
 //#endregion
