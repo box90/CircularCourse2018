@@ -15,7 +15,7 @@ namespace Circolare2018.SL.Controllers
     public class ResourceController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IEnumerable<Models.ResourceModel> GetAll()
         {
             List<ResourceModel> Rmodel = new List<ResourceModel>();
 
@@ -24,7 +24,7 @@ namespace Circolare2018.SL.Controllers
                 Rmodel.Add(ResourceModel.MapModel(res));
             }
 
-            return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Rmodel));
+            return Rmodel;
         }
 
         [HttpGet]
