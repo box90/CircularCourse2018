@@ -43,7 +43,8 @@ function GetResources(): void {
 }
 
 function PrintResource(item: Resource): string {
-    return item.ID.toString() + ' ' + item.Name.toString() + ' ' + item.Surname.toString();   
+    let result: string = '<td>' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
+    return result;
 }
 
 function GetResource(id: number): Resource {
