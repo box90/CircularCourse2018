@@ -18,32 +18,40 @@ $(document).ready(function () {
     GetResources();
     //PrintResources(resources);
 });
+//#endregion
+//#region API
+//getALL
 function GetResources() {
     $.getJSON(webApiUri + '/resource', function (resources) {
-        $('#grid').empty();
+        $('#grid tbody').empty();
         $.each(resources, function (i, elem) {
-            $('#grid').append('<tr onclick="ClickResource(this);">' + PrintResource(elem) + '</tr>');
+            $('#grid').append('<tr onclick="ClickDetails(this);">' + PrintResource(elem) + '</tr>');
         });
     })
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resources');
     });
 }
-function PrintResource(item) {
-    var result = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
-    return result;
-}
+//getByID
 function GetResource(id) {
-    var tmp = null;
-    $.getJSON(webApiUri + '/resource/' + id)
-        .done(function (res) {
-        tmp = res;
+    var tmp = new Resource();
+    $.getJSON(webApiUri + '/resource/' + id, function (res) {
+        tmp = JSON.parse(res);
+        if (tmp != null) {
+            $('#id').val(tmp.ID.toString());
+            $('#username').val(tmp.UserName);
+            $('#name').val(tmp.Name);
+            $('#surname').val(tmp.Surname);
+            $('#avaiable').prop('checked', tmp.IsAvaiable);
+            $('#cp').prop('checked', tmp.IsCp);
+        }
     })
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resource ' + id);
     });
     return tmp;
 }
+//Post
 function createResource() {
     $.ajax({
         type: "POST",
@@ -65,13 +73,19 @@ function createResource() {
         alert("An error has occurred while creating Resource");
     });
 }
+//Update
 function updateResource() {
     $.ajax({
         type: "PUT",
         url: webApiUri + '/resource/update',
         contentType: 'application/json',
         data: JSON.stringify({
-        //inserire i campi del form dei dettagli della risorsa
+            ID: $('#id').val(),
+            UserName: $('#username').val(),
+            Name: $('#name').val(),
+            Surname: $('#surname').val(),
+            IsAvaiable: $('#avaiable').prop('checked'),
+            IsCp: $('#cp').prop('checked')
         })
     }).done(function (data) {
         //console.log(JSON.stringify(data));
@@ -80,6 +94,7 @@ function updateResource() {
         alert("An error has occurred while updating Resource");
     });
 }
+//Delese
 function deleteResource(resourceId) {
     if (!confirm('Remove Resource?')) {
         return;
@@ -95,10 +110,17 @@ function deleteResource(resourceId) {
         alert("An error has occurred while deleting Resource " + resourceId);
     });
 }
-function ClickResource(x) {
-    var $row = $(x).closest("tr"); // Find the row
-    var $text = $row.find(".toBeFound").text(); // Find the text
-    alert($text);
+//#endregion
+//#region OtherFunctions
+function PrintResource(item) {
+    var result = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
+    return result;
+}
+function ClickDetails(x) {
+    var row = $(x).closest("tr"); // Find the row
+    var id = row.find(".toBeFound").text(); // Find the text
+    //alert(id);
+    GetResource(Number(id));
 }
 //#endregion
 //# sourceMappingURL=resource.js.map

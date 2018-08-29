@@ -26,12 +26,16 @@ $(document).ready(() => {
     GetResources();
     //PrintResources(resources);
 });
+//#endregion
 
+//#region API
+
+//getALL
 function GetResources(): void {
     $.getJSON(webApiUri + '/resource', function (resources: Resource[]) {
-        $('#grid').empty();
+        $('#grid tbody').empty();
         $.each(resources, (i, elem: Resource) => {
-            $('#grid').append('<tr onclick="ClickResource(this);">' + PrintResource(elem) + '</tr>');
+            $('#grid').append('<tr onclick="ClickDetails(this);">' + PrintResource(elem) + '</tr>');
         });
         
     })
@@ -40,25 +44,29 @@ function GetResources(): void {
         });
 }
 
-function PrintResource(item: Resource): string {
-    let result: string = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
-    return result;
-}
-
+//getByID
 function GetResource(id: number): Resource {
-    let tmp: Resource = null;
+    let tmp: Resource = new Resource();
 
-    $.getJSON(webApiUri + '/resource/' + id)
-        .done(function (res: Resource) {
-            tmp = res;    
-        })
-        .fail(function (jqXHR, textStatus, err) {
-            alert('An error occurred while loading Resource ' + id);
-        });
+    $.getJSON(webApiUri + '/resource/' + id, function (res: string) {
+        tmp = JSON.parse(res);
+        if (tmp != null) {
+            $('#id').val(tmp.ID.toString());
+            $('#username').val(tmp.UserName);
+            $('#name').val(tmp.Name);
+            $('#surname').val(tmp.Surname);
+            $('#avaiable').prop('checked', tmp.IsAvaiable);
+            $('#cp').prop('checked', tmp.IsCp);
+        }        
+    })
+    .fail(function (jqXHR, textStatus, err) {
+        alert('An error occurred while loading Resource ' + id);
+    });
 
     return tmp;
 }
 
+//Post
 function createResource(): void {
     $.ajax({
         type: "POST",
@@ -81,13 +89,19 @@ function createResource(): void {
     });
 }
 
+//Update
 function updateResource(): void {
     $.ajax({
-        type: "PUT", //controllare se PUT
+        type: "PUT",
         url: webApiUri + '/resource/update',
         contentType: 'application/json',
         data: JSON.stringify({
-            //inserire i campi del form dei dettagli della risorsa
+            ID: $('#id').val(),
+            UserName: $('#username').val(),
+            Name: $('#name').val(),
+            Surname: $('#surname').val(),
+            IsAvaiable: $('#avaiable').prop('checked'),
+            IsCp: $('#cp').prop('checked')
         })
     }).done(function (data) {
         //console.log(JSON.stringify(data));
@@ -97,7 +111,7 @@ function updateResource(): void {
     });
 }
 
-
+//Delese
 function deleteResource(resourceId: number): void {
     if (!confirm('Remove Resource?')) {
         return;
@@ -114,10 +128,20 @@ function deleteResource(resourceId: number): void {
     });
 }
 
-function ClickResource(x: HTMLTableRowElement): void {
-    var $row = $(x).closest("tr");    // Find the row
-    var $text = $row.find(".toBeFound").text(); // Find the text
+//#endregion
 
-    alert($text);
+
+
+//#region OtherFunctions
+function PrintResource(item: Resource): string {
+    let result: string = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
+    return result;
+}
+
+function ClickDetails(x: HTMLTableRowElement): void {
+    var row = $(x).closest("tr");    // Find the row
+    var id = row.find(".toBeFound").text(); // Find the text
+    //alert(id);
+    GetResource(Number(id));
 }
 //#endregion

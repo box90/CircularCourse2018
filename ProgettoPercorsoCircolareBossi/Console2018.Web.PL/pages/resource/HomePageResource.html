@@ -69,7 +69,7 @@
                     </td>
                     <td>
                         <!-- Element Details -->
-                        <div id="details" class="container">
+                        <div id="details" class="container" style="vertical-align:top">
                             <form>
                                 <div class="form-group row">
                                     <label for="id">ID</label>
@@ -81,24 +81,28 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="username" />
+                                    <input type="text" class="form-control" id="name" />
                                 </div>
                                 <div class="form-group row">
                                     <label for="surname">Surname</label>
                                     <input type="text" class="form-control" id="surname" />
                                 </div>
-                                <div class="form-group row" >
+                                <div class="form-group row">
                                     <div class="form-check">
                                         <label>
-                                            <input type="checkbox" name="avaiable">
+                                            <input type="checkbox" id="avaiable">
                                             <span class="label-text">IsAvaiable</span>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <label>
-                                            <input type="checkbox" name="cp">
+                                            <input type="checkbox" id="cp">
                                             <span class="label-text">IsCp</span>
                                         </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <button type="button" class="btn btn-outline-warning" onclick="updateResource();">Update</button>
+                                        <button type="button" class="btn btn-outline-danger">Delete</button>
                                     </div>
                                 </div>
                             </form>
