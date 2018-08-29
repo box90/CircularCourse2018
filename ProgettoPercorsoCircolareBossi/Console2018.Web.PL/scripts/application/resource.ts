@@ -22,18 +22,16 @@ let retrievedResources: Resource[] = [];
 //#region Code
 $(document).ready(() => {
     //retrieve all Resources
+    //$('#grid').empty();
     GetResources();
     //PrintResources(resources);
 });
 
 function GetResources(): void {
-    let tmp: Resource[];
-
     $.getJSON(webApiUri + '/resource', function (resources: Resource[]) {
-        tmp = resources;
-        
+        $('#grid').empty();
         $.each(resources, (i, elem: Resource) => {
-            $('#grid > tbody:last-child').append('<tr>' + PrintResource(elem) + '</tr>');
+            $('#grid').append('<tr onclick="ClickResource(this);">' + PrintResource(elem) + '</tr>');
         });
         
     })
@@ -43,7 +41,7 @@ function GetResources(): void {
 }
 
 function PrintResource(item: Resource): string {
-    let result: string = '<td>' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
+    let result: string = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
     return result;
 }
 
@@ -116,5 +114,10 @@ function deleteResource(resourceId: number): void {
     });
 }
 
+function ClickResource(x: HTMLTableRowElement): void {
+    var $row = $(x).closest("tr");    // Find the row
+    var $text = $row.find(".toBeFound").text(); // Find the text
 
+    alert($text);
+}
 //#endregion

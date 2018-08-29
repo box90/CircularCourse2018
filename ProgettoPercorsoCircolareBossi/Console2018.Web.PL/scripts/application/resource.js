@@ -14,15 +14,15 @@ var retrievedResources = [];
 //#region Code
 $(document).ready(function () {
     //retrieve all Resources
+    //$('#grid').empty();
     GetResources();
     //PrintResources(resources);
 });
 function GetResources() {
-    var tmp;
     $.getJSON(webApiUri + '/resource', function (resources) {
-        tmp = resources;
+        $('#grid').empty();
         $.each(resources, function (i, elem) {
-            $('#grid > tbody:last-child').append('<tr>' + PrintResource(elem) + '</tr>');
+            $('#grid').append('<tr onclick="ClickResource(this);">' + PrintResource(elem) + '</tr>');
         });
     })
         .fail(function (jqXHR, textStatus, err) {
@@ -30,7 +30,7 @@ function GetResources() {
     });
 }
 function PrintResource(item) {
-    var result = '<td>' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
+    var result = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Surname + '</td>';
     return result;
 }
 function GetResource(id) {
@@ -94,6 +94,11 @@ function deleteResource(resourceId) {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while deleting Resource " + resourceId);
     });
+}
+function ClickResource(x) {
+    var $row = $(x).closest("tr"); // Find the row
+    var $text = $row.find(".toBeFound").text(); // Find the text
+    alert($text);
 }
 //#endregion
 //# sourceMappingURL=resource.js.map
