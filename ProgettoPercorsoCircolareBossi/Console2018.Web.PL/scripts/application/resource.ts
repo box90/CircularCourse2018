@@ -23,8 +23,11 @@ let retrievedResources: Resource[] = [];
 $(document).ready(() => {
     //retrieve all Resources
     //$('#grid').empty();
+    $('#loader').show();
+    $('#resume').hide();
     GetResources();
-    //PrintResources(resources);
+    $('#loader').hide();
+    $('#resume').show();
 });
 //#endregion
 
@@ -42,6 +45,7 @@ function GetResources(): void {
     .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Resources');
         });
+    
 }
 
 //getByID
@@ -112,13 +116,13 @@ function updateResource(): void {
 }
 
 //Delese
-function deleteResource(resourceId: number): void {
+function DeleteResource(resourceId: number): void {
     if (!confirm('Remove Resource?')) {
         return;
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUri + '/resource/remove/?id=' + resourceId,
+        url: webApiUri + '/resource/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));

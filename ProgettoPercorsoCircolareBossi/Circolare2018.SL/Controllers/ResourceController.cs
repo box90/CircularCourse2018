@@ -11,7 +11,7 @@ using Circolare2018.SL.Models;
 namespace Circolare2018.SL.Controllers
 {
     [RoutePrefix("api/resource")]
-    [EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ResourceController : ApiController
     {
         [HttpGet]

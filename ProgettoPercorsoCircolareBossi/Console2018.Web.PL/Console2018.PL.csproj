@@ -120,6 +120,7 @@
     <Content Include="scripts\umd\popper-utils.min.js" />
     <Content Include="scripts\umd\popper.js" />
     <Content Include="scripts\umd\popper.min.js" />
+    <None Include="tenor.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +160,9 @@
       <Name>Circolare2018.SL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\application\app.ts" />
     <TypeScriptCompile Include="scripts\application\course.ts" />
@@ -171,6 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

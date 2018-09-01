@@ -48,7 +48,11 @@
             </div>
         </div>
 
-        <div class="container">
+        <div id="loader">
+            <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif">
+        </div>
+
+        <div id="resume" class="container">
            
             <table class="col-xl-12">
                 <tr>
@@ -102,7 +106,7 @@
                                     </div>
                                     <div class="form-check">
                                         <button type="button" class="btn btn-outline-warning" onclick="updateResource();">Update</button>
-                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                        <button type="button" class="btn btn-outline-danger" onclick="DeleteResource($('#id').val());">Delete</button>
                                     </div>
                                 </div>
                             </form>

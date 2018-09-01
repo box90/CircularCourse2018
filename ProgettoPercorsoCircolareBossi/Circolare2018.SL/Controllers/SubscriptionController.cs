@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 namespace Circolare2018.SL.Controllers
 {
     [RoutePrefix("api/subscription")]
-    [EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:58301", headers: "*", methods: "*")]
     public class SubscriptionController : ApiController
     {
         [HttpGet]

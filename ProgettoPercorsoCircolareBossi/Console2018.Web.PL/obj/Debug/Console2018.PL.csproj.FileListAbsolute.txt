@@ -80,3 +80,5 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\System.Web.Http.Cors.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\System.Web.Cors.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\bin\System.Web.Http.Cors.xml
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\obj\Debug\Console2018.Web.PL.Properties.Resources.resources
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Console2018.Web.PL\obj\Debug\Console2018.PL.csproj.GenerateResource.cache

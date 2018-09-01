@@ -15,8 +15,11 @@ var retrievedResources = [];
 $(document).ready(function () {
     //retrieve all Resources
     //$('#grid').empty();
+    $('#loader').show();
+    $('#resume').hide();
     GetResources();
-    //PrintResources(resources);
+    $('#loader').hide();
+    $('#resume').show();
 });
 //#endregion
 //#region API
@@ -95,13 +98,13 @@ function updateResource() {
     });
 }
 //Delese
-function deleteResource(resourceId) {
+function DeleteResource(resourceId) {
     if (!confirm('Remove Resource?')) {
         return;
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUri + '/resource/remove/?id=' + resourceId,
+        url: webApiUri + '/resource/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));
