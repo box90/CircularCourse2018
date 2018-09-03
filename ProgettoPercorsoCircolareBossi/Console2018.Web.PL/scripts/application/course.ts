@@ -15,34 +15,65 @@ class Course {
 
 //#region Variables
 const webApiUriCourse: string = 'http://localhost:53141/api/course';
-let retrievedCourses: Course[] = [];
+let _selfPageCourse = this;
 //#endregion
 
+
 //#Region Code
+$(document).ready(() => {
+    //retrieve all Courses
+    $('#loader').show();
+    $('#resume').hide();
+    //CleanAllCoursePage();
+    GetCourses();
+});
+//#endregion
+
+//#Region API
 function GetCourses(): Course[] {
     let tmp: Course[] = [];
 
-    $.getJSON(webApiUriCourse)
-        .done(function (courses: Course[]) {
-            tmp = courses;
-        })
+    $.getJSON(webApiUriCourse, function (courses: Course[]) {
+        tmp = courses;
+        $('#grid tbody').empty();
+        $.each(courses, (i, elem: Course) => {
+            $('#grid').append('<tr onclick="ClickDetailsCourse(this);">' + PrintCourse(elem) + '</tr>');
+        });
+    })
+        .done(function (data) {
+            $('#loader').hide();
+            $('#resume').show();
+    })
         .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Courses');
-        });
+    });
 
     return tmp;
 }
 
 function GetCourse(id: number): Course {
-    let tmp: Course = null;
+    let tmp: Course = new Course();
 
-    $.getJSON(webApiUriCourse + '/' + id)
-        .done(function (res: Course) {
-            tmp = res;
-        })
-        .fail(function (jqXHR, textStatus, err) {
-            alert('An error occurred while loading Course ' + id);
-        });
+    $.getJSON(webApiUriCourse + '/' + id, function (res: string) {
+        tmp = JSON.parse(res);
+        //var startD = tmp.StartDate.getTime().toString() + '-' + tmp.StartDate.getMonth().toString() + '-' + tmp.StartDate.getDate().toString();
+        //var endD = tmp.EndDate.getTime().toString() + '-' + tmp.EndDate.getMonth().toString() + '-' + tmp.EndDate.getDate().toString();
+
+        if (tmp != null) {
+            $('#idCourse').val(tmp.ID);
+            $('#titleCourse').val(tmp.Title);
+            $('#descriptionCourse').val(tmp.Description);
+            $('#yearCourse').val(tmp.RefYear);
+            //$('#startDate').val(startD);
+            //$('#endDate').val(endD);
+            $('#idCoordinator').val(tmp.ID_Coordinator);
+            $('#circular').prop('checked', tmp.IsCircular);
+        }
+    })
+    .done(function (data) {})
+    .fail(function (jqXHR, textStatus, err) {
+        alert('An error occurred while loading Course ' + id);
+    });
 
     return tmp;
 }
@@ -103,6 +134,30 @@ function deleteCourse(courseId: number): void {
             alert("An error has occurred while deleting Course " + courseId);
     });
 }
+//#endregion
 
 
+//#region OtherFunctions
+function PrintCourse(item: Course): string {
+    let result: string = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Title + '</td>' + '<td>' + item.RefYear.toString() + '</td>';
+    return result;
+}
+
+function ClickDetailsCourse(x: HTMLTableRowElement): void {
+    var row = $(x).closest("tr");    // Find the row
+    var id = row.find(".toBeFound").text(); // Find the text
+    //alert(id);
+    GetCourse(Number(id));
+}
+
+function CleanAllCoursePage(): void {
+    $('#idCourse').val("");
+    $('#titleCourse').val("");
+    $('#descriptionCourse').val("");
+    $('#yearCourse').val("");
+    $('#startDate').val("");
+    $('#endDate').val("");
+    $('#idCoordinator').val("");
+    $('#circular').prop('checked', false);
+}
 //#endregion

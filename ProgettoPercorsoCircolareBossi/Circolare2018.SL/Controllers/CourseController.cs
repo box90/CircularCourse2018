@@ -15,7 +15,7 @@ namespace Circolare2018.SL.Controllers
     public class CourseController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IEnumerable<CourseModel> GetAll()
         {
             List<CourseModel> Cmodel = new List<CourseModel>();
 
@@ -24,7 +24,7 @@ namespace Circolare2018.SL.Controllers
                 Cmodel.Add(CourseModel.MapModel(course));
             }
 
-            return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Cmodel));
+            return Cmodel;
         }
 
         [HttpGet]
