@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var shared_1 = require("./shared");
+//import { webApiUri } from './shared'
 //#region Class
 var Teacher = /** @class */ (function () {
     function Teacher() {
@@ -9,12 +7,13 @@ var Teacher = /** @class */ (function () {
 }());
 //#endregion
 //#region Variables
+var webApiUriTeacher = 'http://localhost:53141/api/teacher';
 var retrievedTeachers = [];
 //#endregion
 //#Region Code
 function GetTeachers() {
     var tmp = [];
-    $.getJSON(shared_1.webApiUri + '/teacher')
+    $.getJSON(webApiUri + '/teacher')
         .done(function (courses) {
         tmp = courses;
     })
@@ -25,7 +24,7 @@ function GetTeachers() {
 }
 function GetTeacher(id) {
     var tmp = null;
-    $.getJSON(shared_1.webApiUri + '/teacher/' + id)
+    $.getJSON(webApiUri + '/teacher/' + id)
         .done(function (res) {
         tmp = res;
     })
@@ -37,7 +36,7 @@ function GetTeacher(id) {
 function createTeacher() {
     $.ajax({
         type: "POST",
-        url: shared_1.webApiUri + '/teacher/insert',
+        url: webApiUri + '/teacher/insert',
         contentType: 'application/json',
         data: JSON.stringify({
         /*
@@ -58,7 +57,7 @@ function createTeacher() {
 function updateTeacher() {
     $.ajax({
         type: "PUT",
-        url: shared_1.webApiUri + '/teacher/update',
+        url: webApiUri + '/teacher/update',
         contentType: 'application/json',
         data: JSON.stringify({
         //inserire i campi del form dei dettagli della risorsa
@@ -76,7 +75,7 @@ function deleteTeacher(resourceId) {
     }
     $.ajax({
         type: "DELETE",
-        url: shared_1.webApiUri + '/teacher/remove/?id=' + resourceId,
+        url: webApiUri + '/teacher/remove/?id=' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));

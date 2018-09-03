@@ -1,1 +1,1 @@
-﻿export const webApiUri: string = 'http://localhost:53141/api';
+﻿export const stringTest: string = 'TEST';

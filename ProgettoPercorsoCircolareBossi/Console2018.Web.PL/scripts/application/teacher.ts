@@ -1,4 +1,4 @@
-﻿import { webApiUri } from './shared'
+﻿//import { webApiUri } from './shared'
 
 //#region Class
 class Teacher {
@@ -11,6 +11,7 @@ class Teacher {
 //#endregion
 
 //#region Variables
+const webApiUriTeacher: string = 'http://localhost:53141/api/teacher';
 let retrievedTeachers: Teacher[] = [];
 //#endregion
 

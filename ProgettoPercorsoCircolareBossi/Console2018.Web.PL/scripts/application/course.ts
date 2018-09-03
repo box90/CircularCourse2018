@@ -1,4 +1,4 @@
-﻿import { webApiUri} from './shared'
+﻿//import { webApiUri} from './shared'
 
 //#region Classes
 class Course {
@@ -14,6 +14,7 @@ class Course {
 //#endregion
 
 //#region Variables
+const webApiUriCourse: string = 'http://localhost:53141/api/course';
 let retrievedCourses: Course[] = [];
 //#endregion
 
@@ -21,7 +22,7 @@ let retrievedCourses: Course[] = [];
 function GetCourses(): Course[] {
     let tmp: Course[] = [];
 
-    $.getJSON(webApiUri + '/course')
+    $.getJSON(webApiUriCourse)
         .done(function (courses: Course[]) {
             tmp = courses;
         })
@@ -35,7 +36,7 @@ function GetCourses(): Course[] {
 function GetCourse(id: number): Course {
     let tmp: Course = null;
 
-    $.getJSON(webApiUri + '/course/' + id)
+    $.getJSON(webApiUriCourse + '/' + id)
         .done(function (res: Course) {
             tmp = res;
         })
@@ -50,7 +51,7 @@ function GetCourse(id: number): Course {
 function createCourse(): void {
     $.ajax({
         type: "POST",
-        url: webApiUri + '/course/insert',
+        url: webApiUriCourse + '/insert',
         contentType: 'application/json',
         data: JSON.stringify({
             /*
@@ -72,7 +73,7 @@ function createCourse(): void {
 function updateCourse(): void {
     $.ajax({
         type: "PUT", //controllare se PUT
-        url: webApiUri + '/course/update',
+        url: webApiUriCourse + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
             //inserire i campi del form dei dettagli del corso
@@ -93,7 +94,7 @@ function deleteCourse(courseId: number): void {
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUri + '/course/remove/?id=' + courseId,
+        url: webApiUriCourse + '/remove/' + courseId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));

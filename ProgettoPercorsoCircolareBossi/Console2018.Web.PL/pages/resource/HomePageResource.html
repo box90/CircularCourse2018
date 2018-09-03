@@ -53,7 +53,11 @@
         </div>
 
         <div id="resume" class="container">
-
+            <div id="buttonOpenCreate">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#ModalCreate">
+                    New Resource
+                </button>
+            </div>
             <table class="col-xl-12" style="vertical-align:top">
                 <tr>
                     <td>
@@ -121,21 +125,50 @@
 
         <hr>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="ModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Create Resource</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div id="details" class="container" style="vertical-align:top">
+                            <form>
+                                <div class="form-group row">
+                                    <label for="idCreate">ID</label>
+                                    <input type="number" class="form-control" id="idCreate"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="nameCreate">Name</label>
+                                    <input type="text" class="form-control" id="nameCreate" />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="surnameCreate">Surname</label>
+                                    <input type="text" class="form-control" id="surnameCreate" />
+                                </div>
+                                <div class="form-group row">
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="checkbox" id="avaiableCreate">
+                                            <span class="label-text">IsAvaiable</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="checkbox" id="cpCreate">
+                                            <span class="label-text">IsCp</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button id="buttonClose" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CleanAll();">Close</button>
+                        <button id="buttonCreate" type="button" class="btn btn-success" onclick="createResource();" data-dismiss="modal">Create</button>
                     </div>
                 </div>
             </div>

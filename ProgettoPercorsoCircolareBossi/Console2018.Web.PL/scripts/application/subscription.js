@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var shared_1 = require("./shared");
+//import { webApiUri } from './shared'
 //#region Class
 var Subscription = /** @class */ (function () {
     function Subscription() {
@@ -9,12 +7,13 @@ var Subscription = /** @class */ (function () {
 }());
 //#endregion
 //#region Variables
+var webApiUriSub = 'http://localhost:53141/api/subscription';
 var retrievedSubscriptions = [];
 //#endregion
 //#Region Code
 function GetSubscriptions() {
     var tmp = [];
-    $.getJSON(shared_1.webApiUri + '/subscriprion')
+    $.getJSON(webApiUri + '/subscriprion')
         .done(function (courses) {
         tmp = courses;
     })
@@ -25,7 +24,7 @@ function GetSubscriptions() {
 }
 function GetSubscription(id) {
     var tmp = null;
-    $.getJSON(shared_1.webApiUri + '/subscription/' + id)
+    $.getJSON(webApiUri + '/subscription/' + id)
         .done(function (res) {
         tmp = res;
     })
@@ -37,7 +36,7 @@ function GetSubscription(id) {
 function createSubscription() {
     $.ajax({
         type: "POST",
-        url: shared_1.webApiUri + '/subscription/insert',
+        url: webApiUri + '/subscription/insert',
         contentType: 'application/json',
         data: JSON.stringify({
         /*
@@ -58,7 +57,7 @@ function createSubscription() {
 function updateSubscription() {
     $.ajax({
         type: "PUT",
-        url: shared_1.webApiUri + '/subscription/update',
+        url: webApiUri + '/subscription/update',
         contentType: 'application/json',
         data: JSON.stringify({
         //inserire i campi del form dei dettagli della risorsa
@@ -76,7 +75,7 @@ function deleteSubscription(resourceId) {
     }
     $.ajax({
         type: "DELETE",
-        url: shared_1.webApiUri + '/subscription/remove/?id=' + resourceId,
+        url: webApiUri + '/subscription/remove/?id=' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));

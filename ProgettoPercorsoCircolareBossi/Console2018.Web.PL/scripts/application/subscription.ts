@@ -1,4 +1,4 @@
-﻿import { webApiUri } from './shared'
+﻿//import { webApiUri } from './shared'
 
 //#region Class
 class Subscription {
@@ -15,6 +15,7 @@ class Subscription {
 //#endregion
 
 //#region Variables
+const webApiUriSub: string = 'http://localhost:53141/api/subscription';
 let retrievedSubscriptions: Subscription[] = [];
 //#endregion
 

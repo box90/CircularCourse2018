@@ -10,7 +10,6 @@ var Resource = /** @class */ (function () {
 var webApiUri = 'http://localhost:53141/api';
 //let webApiUri: string = SHARED.webApiUri;
 var _self = this;
-var retrievedResources = [];
 //#endregion
 //#region Code
 $(document).ready(function () {
@@ -18,6 +17,7 @@ $(document).ready(function () {
     //$('#grid').empty();
     $('#loader').show();
     $('#resume').hide();
+    CleanAll();
     GetResources();
 });
 //#endregion
@@ -29,6 +29,10 @@ function GetResources() {
         $.each(resources, function (i, elem) {
             $('#grid').append('<tr onclick="ClickDetails(this);">' + PrintResource(elem) + '</tr>');
         });
+    })
+        .done(function (data) {
+        $('#loader').hide();
+        $('#resume').show();
     })
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resources');
@@ -49,8 +53,8 @@ function GetResource(id) {
         }
     })
         .done(function (data) {
-        $('#loader').hide();
-        $('#resume').show();
+        $('#updateButton').prop('disabled', false);
+        $('#deleteButton').prop('disabled', false);
     })
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resource ' + id);
@@ -64,15 +68,14 @@ function createResource() {
         url: webApiUri + '/resource/insert',
         contentType: 'application/json',
         data: JSON.stringify({
-        /*
-        UserTitleId: $('#select-user-titles').val(),
-        Username: $('#user-username').val(),
-        Surname: $('#user-surname').val(),
-        Name: $('#user-name').val()
-        */
-        //inserire i campi del form dei dettagli della risorsa
+            ID: $('#idCreate').val(),
+            Name: $('#nameCreate').val(),
+            Surname: $('#surnameCreate').val(),
+            IsAvaiable: $('#avaiableCreate').prop('checked'),
+            IsCp: $('#cpCreate').prop('checked')
         })
     }).done(function (data) {
+        //$('#ModalCreate').modal('hide');
         _self.CleanAll();
         _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -139,6 +142,12 @@ function CleanAll() {
     //Disable Buttons
     $('#updateButton').prop('disabled', true);
     $('#deleteButton').prop('disabled', true);
+    //Clean Modal
+    $('#idCreate').val("");
+    $('#nameCreate').val("");
+    $('#surnameCreate').val("");
+    $('#avaiableCreate').prop('checked', false);
+    $('#cpCreate').prop('checked', false);
 }
 //#endregion
 //# sourceMappingURL=resource.js.map

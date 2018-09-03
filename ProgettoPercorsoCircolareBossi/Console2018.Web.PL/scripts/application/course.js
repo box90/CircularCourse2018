@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var shared_1 = require("./shared");
+//import { webApiUri} from './shared'
 //#region Classes
 var Course = /** @class */ (function () {
     function Course() {
@@ -9,12 +7,13 @@ var Course = /** @class */ (function () {
 }());
 //#endregion
 //#region Variables
+var webApiUriCourse = 'http://localhost:53141/api/course';
 var retrievedCourses = [];
 //#endregion
 //#Region Code
 function GetCourses() {
     var tmp = [];
-    $.getJSON(shared_1.webApiUri + '/course')
+    $.getJSON(webApiUriCourse)
         .done(function (courses) {
         tmp = courses;
     })
@@ -25,7 +24,7 @@ function GetCourses() {
 }
 function GetCourse(id) {
     var tmp = null;
-    $.getJSON(shared_1.webApiUri + '/course/' + id)
+    $.getJSON(webApiUriCourse + '/' + id)
         .done(function (res) {
         tmp = res;
     })
@@ -37,7 +36,7 @@ function GetCourse(id) {
 function createCourse() {
     $.ajax({
         type: "POST",
-        url: shared_1.webApiUri + '/course/insert',
+        url: webApiUriCourse + '/insert',
         contentType: 'application/json',
         data: JSON.stringify({
         /*
@@ -58,7 +57,7 @@ function createCourse() {
 function updateCourse() {
     $.ajax({
         type: "PUT",
-        url: shared_1.webApiUri + '/course/update',
+        url: webApiUriCourse + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
         //inserire i campi del form dei dettagli del corso
@@ -76,7 +75,7 @@ function deleteCourse(courseId) {
     }
     $.ajax({
         type: "DELETE",
-        url: shared_1.webApiUri + '/course/remove/?id=' + courseId,
+        url: webApiUriCourse + '/remove/' + courseId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));
