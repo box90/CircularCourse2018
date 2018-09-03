@@ -13,10 +13,10 @@ namespace Circolare2018.SL
             // Web API configuration and services
             //var corsAttr = new EnableCorsAttribute("http://localhost:58301", "*", "*", "*");
             //config.EnableCors(corsAttr);
-            //config.EnableCors();
+            config.EnableCors();
 
-            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
+            //EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:58301", "*", "*");
+            //config.EnableCors(cors);
 
 
 

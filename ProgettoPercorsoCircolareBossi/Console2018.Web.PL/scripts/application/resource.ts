@@ -15,6 +15,7 @@ class Resource {
 //#region Variables
 const webApiUri: string = 'http://localhost:53141/api';
 //let webApiUri: string = SHARED.webApiUri;
+let _self = this;
 let retrievedResources: Resource[] = [];
 //#endregion
 
@@ -26,8 +27,6 @@ $(document).ready(() => {
     $('#loader').show();
     $('#resume').hide();
     GetResources();
-    $('#loader').hide();
-    $('#resume').show();
 });
 //#endregion
 
@@ -63,8 +62,12 @@ function GetResource(id: number): Resource {
             $('#cp').prop('checked', tmp.IsCp);
         }        
     })
-    .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Resource ' + id);
+        .done(function (data) {
+            $('#loader').hide();
+            $('#resume').show();
+    })
+        .fail(function (jqXHR, textStatus, err) {
+            alert('An error occurred while loading Resource ' + id);
     });
 
     return tmp;
@@ -86,8 +89,8 @@ function createResource(): void {
             //inserire i campi del form dei dettagli della risorsa
         })
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetResources();
+        _self.CleanAll();
+        _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while creating Resource");
     });
@@ -108,8 +111,8 @@ function updateResource(): void {
             IsCp: $('#cp').prop('checked')
         })
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetResources();
+        _self.CleanAll();
+        _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while updating Resource");
     });
@@ -125,8 +128,8 @@ function DeleteResource(resourceId: number): void {
         url: webApiUri + '/resource/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetResources();
+        _self.CleanAll();
+        _self.GetResources();
         }).fail(function (jqXHR, textStatus, errorThrown) {
             alert("An error has occurred while deleting Resource " + resourceId);
     });
@@ -147,5 +150,18 @@ function ClickDetails(x: HTMLTableRowElement): void {
     var id = row.find(".toBeFound").text(); // Find the text
     //alert(id);
     GetResource(Number(id));
+}
+
+function CleanAll(): void {
+    //Clean Form
+    $('#id').val("");
+    $('#username').val("");
+    $('#name').val("");
+    $('#surname').val("");
+    $('#avaiable').prop('checked', false);
+    $('#cp').prop('checked', false);
+    //Disable Buttons
+    $('#updateButton').prop('disabled', true);
+    $('#deleteButton').prop('disabled', true);
 }
 //#endregion

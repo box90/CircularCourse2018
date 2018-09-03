@@ -9,6 +9,7 @@ var Resource = /** @class */ (function () {
 //#region Variables
 var webApiUri = 'http://localhost:53141/api';
 //let webApiUri: string = SHARED.webApiUri;
+var _self = this;
 var retrievedResources = [];
 //#endregion
 //#region Code
@@ -18,8 +19,6 @@ $(document).ready(function () {
     $('#loader').show();
     $('#resume').hide();
     GetResources();
-    $('#loader').hide();
-    $('#resume').show();
 });
 //#endregion
 //#region API
@@ -49,6 +48,10 @@ function GetResource(id) {
             $('#cp').prop('checked', tmp.IsCp);
         }
     })
+        .done(function (data) {
+        $('#loader').hide();
+        $('#resume').show();
+    })
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resource ' + id);
     });
@@ -70,8 +73,8 @@ function createResource() {
         //inserire i campi del form dei dettagli della risorsa
         })
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetResources();
+        _self.CleanAll();
+        _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while creating Resource");
     });
@@ -91,8 +94,8 @@ function updateResource() {
             IsCp: $('#cp').prop('checked')
         })
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetResources();
+        _self.CleanAll();
+        _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while updating Resource");
     });
@@ -107,8 +110,8 @@ function DeleteResource(resourceId) {
         url: webApiUri + '/resource/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetResources();
+        _self.CleanAll();
+        _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while deleting Resource " + resourceId);
     });
@@ -124,6 +127,18 @@ function ClickDetails(x) {
     var id = row.find(".toBeFound").text(); // Find the text
     //alert(id);
     GetResource(Number(id));
+}
+function CleanAll() {
+    //Clean Form
+    $('#id').val("");
+    $('#username').val("");
+    $('#name').val("");
+    $('#surname').val("");
+    $('#avaiable').prop('checked', false);
+    $('#cp').prop('checked', false);
+    //Disable Buttons
+    $('#updateButton').prop('disabled', true);
+    $('#deleteButton').prop('disabled', true);
 }
 //#endregion
 //# sourceMappingURL=resource.js.map
