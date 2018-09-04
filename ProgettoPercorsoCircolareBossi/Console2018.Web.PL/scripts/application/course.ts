@@ -1,4 +1,6 @@
-﻿//import { webApiUri} from './shared'
+﻿//import { Resource } from "./resource";
+
+//import { webApiUri} from './shared'
 
 //#region Classes
 class Course {
@@ -24,8 +26,9 @@ $(document).ready(() => {
     //retrieve all Courses
     $('#loader').show();
     $('#resume').hide();
-    //CleanAllCoursePage();
+    CleanAllCoursePage();
     GetCourses();
+    PopulateDropdown();
 });
 //#endregion
 
@@ -56,21 +59,24 @@ function GetCourse(id: number): Course {
 
     $.getJSON(webApiUriCourse + '/' + id, function (res: string) {
         tmp = JSON.parse(res);
-        //var startD = tmp.StartDate.getTime().toString() + '-' + tmp.StartDate.getMonth().toString() + '-' + tmp.StartDate.getDate().toString();
-        //var endD = tmp.EndDate.getTime().toString() + '-' + tmp.EndDate.getMonth().toString() + '-' + tmp.EndDate.getDate().toString();
+        var startD = tmp.StartDate.toString().substring(0, tmp.StartDate.toString().indexOf('T'));
+        var endD = tmp.EndDate.toString().substring(0, tmp.EndDate.toString().indexOf('T'));
 
         if (tmp != null) {
             $('#idCourse').val(tmp.ID);
             $('#titleCourse').val(tmp.Title);
             $('#descriptionCourse').val(tmp.Description);
             $('#yearCourse').val(tmp.RefYear);
-            //$('#startDate').val(startD);
-            //$('#endDate').val(endD);
+            $('#startDate').val(startD);
+            $('#endDate').val(endD);
             $('#idCoordinator').val(tmp.ID_Coordinator);
             $('#circular').prop('checked', tmp.IsCircular);
         }
     })
-    .done(function (data) {})
+        .done(function (data) {
+            $('#updateButton').prop('disabled', false);
+            $('#deleteButton').prop('disabled', false);
+        })
     .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Course ' + id);
     });
@@ -85,17 +91,17 @@ function createCourse(): void {
         url: webApiUriCourse + '/insert',
         contentType: 'application/json',
         data: JSON.stringify({
-            /*
-            UserTitleId: $('#select-user-titles').val(),
-            Username: $('#user-username').val(),
-            Surname: $('#user-surname').val(),
-            Name: $('#user-name').val()
-            */
-            //inserire i campi del form dei dettagli del corso
+            Title: $('#titleCourseCreate').val(),
+            Description: $('#descriptionCourseCreate').val(),
+            RefYear: $('#yearCourseCreate').val(),
+            StartDate: $('#startDateCreate').val(),
+            EndDate: $('#endDateCreate').val(),
+            ID_Coordinator: $('#idCoordinatorCreate').val(),
+            IsCircular: $('#circularCreate').prop('checked')
         })
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetCourses();
+        _selfPageCourse.CleanAllCoursePage();
+        _selfPageCourse.GetCourses();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while creating Course");
     });
@@ -107,16 +113,23 @@ function updateCourse(): void {
         url: webApiUriCourse + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
-            //inserire i campi del form dei dettagli del corso
+            ID:$('#idCourse').val(),
+            Title: $('#titleCourse').val(),
+            Description: $('#descriptionCourse').val(),
+            RefYear: $('#yearCourse').val(),
+            StartDate: $('#startDate').val(),
+            EndDate: $('#endDate').val(),
+            IsCircular: $('#circular').prop('checked'),
+            ID_Coordinator: $('#idCoordinator').val()
         })
     }).done(function (data) {
         //console.log(JSON.stringify(data));
-        this.GetCourses();
+        _selfPageCourse.CleanAllCoursePage();
+        _selfPageCourse.GetCourses();
         }).fail(function (jqXHR, textStatus, errorThrown) {
             alert("An error has occurred while updating Course");
     });
 }
-
 
 
 function deleteCourse(courseId: number): void {
@@ -128,8 +141,8 @@ function deleteCourse(courseId: number): void {
         url: webApiUriCourse + '/remove/' + courseId,
         contentType: 'application/json'
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetCourses();
+        _selfPageCourse.CleanAllCoursePage();
+        _selfPageCourse.GetCourses();
         }).fail(function (jqXHR, textStatus, errorThrown) {
             alert("An error has occurred while deleting Course " + courseId);
     });
@@ -159,5 +172,35 @@ function CleanAllCoursePage(): void {
     $('#endDate').val("");
     $('#idCoordinator').val("");
     $('#circular').prop('checked', false);
+    //button
+    $('#updateButton').prop('disabled', true);
+    $('#deleteButton').prop('disabled', true);
+    //modalCreate
+    $('#titleCourseCreate').val('');
+    $('#descriptionCourseCreate').val('');
+    $('#yearCourseCreate').val('');
+    $('#startDateCreate').val('');
+    $('#endDateCreate').val('');
+    $('#idCoordinatorCreate').val('');
+    $('#circularCreate').prop('checked', false);
+}
+
+
+function PopulateDropdown(): void {
+    let values: Resource[] = [];
+
+    $.getJSON('http://localhost:53141/api/resource/avaiable', function (resources: Resource[]) {
+        values = resources;
+        var option = '';
+        $.each(values, (i, elem: Resource) => {
+            option += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
+        });
+        $('#selectBox').append(option);
+
+    })
+        .fail(function (jqXHR, textStatus, err) {
+        alert('An error occurred while loading Resources');
+    });
+   
 }
 //#endregion

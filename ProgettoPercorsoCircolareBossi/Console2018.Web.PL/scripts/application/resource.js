@@ -24,7 +24,9 @@ $(document).ready(function () {
 //#region API
 //getALL
 function GetResources() {
+    var tmp = [];
     $.getJSON(webApiUri + '/resource', function (resources) {
+        tmp = resources;
         $('#grid tbody').empty();
         $.each(resources, function (i, elem) {
             $('#grid').append('<tr onclick="ClickDetails(this);">' + PrintResource(elem) + '</tr>');
@@ -37,6 +39,7 @@ function GetResources() {
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resources');
     });
+    return tmp;
 }
 //getByID
 function GetResource(id) {

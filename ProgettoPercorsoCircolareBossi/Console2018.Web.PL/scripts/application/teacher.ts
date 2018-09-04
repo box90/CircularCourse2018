@@ -19,7 +19,7 @@ let retrievedTeachers: Teacher[] = [];
 function GetTeachers(): Teacher[] {
     let tmp: Teacher[] = [];
 
-    $.getJSON(webApiUri + '/teacher')
+    $.getJSON(webApiUriTeacher)
         .done(function (courses: Teacher[]) {
             tmp = courses;
         })
@@ -33,7 +33,7 @@ function GetTeachers(): Teacher[] {
 function GetTeacher(id: number): Teacher {
     let tmp: Teacher = null;
 
-    $.getJSON(webApiUri + '/teacher/' + id)
+    $.getJSON(webApiUriTeacher + '/' + id)
         .done(function (res: Teacher) {
             tmp = res;
         })
@@ -48,7 +48,7 @@ function GetTeacher(id: number): Teacher {
 function createTeacher(): void {
     $.ajax({
         type: "POST",
-        url: webApiUri + '/teacher/insert',
+        url: webApiUriTeacher + '/insert',
         contentType: 'application/json',
         data: JSON.stringify({
             /*
@@ -70,7 +70,7 @@ function createTeacher(): void {
 function updateTeacher(): void {
     $.ajax({
         type: "PUT", //controllare se PUT
-        url: webApiUri + '/teacher/update',
+        url: webApiUriTeacher + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
             //inserire i campi del form dei dettagli della risorsa
@@ -90,7 +90,7 @@ function deleteTeacher(resourceId: number): void {
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUri + '/teacher/remove/?id=' + resourceId,
+        url: webApiUriTeacher + '/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));

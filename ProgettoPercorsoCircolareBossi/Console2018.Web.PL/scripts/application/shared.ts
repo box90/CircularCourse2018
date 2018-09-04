@@ -1,1 +1,0 @@
-﻿export const stringTest: string = 'TEST';

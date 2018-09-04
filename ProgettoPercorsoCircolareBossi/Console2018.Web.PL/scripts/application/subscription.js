@@ -13,7 +13,7 @@ var retrievedSubscriptions = [];
 //#Region Code
 function GetSubscriptions() {
     var tmp = [];
-    $.getJSON(webApiUri + '/subscriprion')
+    $.getJSON(webApiUriSub)
         .done(function (courses) {
         tmp = courses;
     })
@@ -24,7 +24,7 @@ function GetSubscriptions() {
 }
 function GetSubscription(id) {
     var tmp = null;
-    $.getJSON(webApiUri + '/subscription/' + id)
+    $.getJSON(webApiUriSub + '/' + id)
         .done(function (res) {
         tmp = res;
     })
@@ -36,7 +36,7 @@ function GetSubscription(id) {
 function createSubscription() {
     $.ajax({
         type: "POST",
-        url: webApiUri + '/subscription/insert',
+        url: webApiUriSub + '/insert',
         contentType: 'application/json',
         data: JSON.stringify({
         /*
@@ -57,7 +57,7 @@ function createSubscription() {
 function updateSubscription() {
     $.ajax({
         type: "PUT",
-        url: webApiUri + '/subscription/update',
+        url: webApiUriSub + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
         //inserire i campi del form dei dettagli della risorsa
@@ -75,7 +75,7 @@ function deleteSubscription(resourceId) {
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUri + '/subscription/remove/?id=' + resourceId,
+        url: webApiUriSub + '/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));

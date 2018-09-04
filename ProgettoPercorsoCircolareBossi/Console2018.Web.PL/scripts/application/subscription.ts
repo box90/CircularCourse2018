@@ -23,7 +23,7 @@ let retrievedSubscriptions: Subscription[] = [];
 function GetSubscriptions(): Subscription[] {
     let tmp: Subscription[] = [];
 
-    $.getJSON(webApiUri + '/subscriprion')
+    $.getJSON(webApiUriSub)
         .done(function (courses: Subscription[]) {
             tmp = courses;
         })
@@ -37,7 +37,7 @@ function GetSubscriptions(): Subscription[] {
 function GetSubscription(id: number): Subscription {
     let tmp: Subscription = null;
 
-    $.getJSON(webApiUri + '/subscription/' + id)
+    $.getJSON(webApiUriSub + '/' + id)
         .done(function (res: Subscription) {
             tmp = res;
         })
@@ -51,7 +51,7 @@ function GetSubscription(id: number): Subscription {
 function createSubscription(): void {
     $.ajax({
         type: "POST",
-        url: webApiUri + '/subscription/insert',
+        url: webApiUriSub + '/insert',
         contentType: 'application/json',
         data: JSON.stringify({
             /*
@@ -73,7 +73,7 @@ function createSubscription(): void {
 function updateSubscription(): void {
     $.ajax({
         type: "PUT", //controllare se PUT
-        url: webApiUri + '/subscription/update',
+        url: webApiUriSub + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
             //inserire i campi del form dei dettagli della risorsa
@@ -93,7 +93,7 @@ function deleteSubscription(resourceId: number): void {
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUri + '/subscription/remove/?id=' + resourceId,
+        url: webApiUriSub + '/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));

@@ -33,8 +33,11 @@ $(document).ready(() => {
 //#region API
 
 //getALL
-function GetResources(): void {
+function GetResources(): Resource[] {
+    let tmp: Resource[] = [];
+
     $.getJSON(webApiUri + '/resource', function (resources: Resource[]) {
+        tmp = resources;
         $('#grid tbody').empty();
         $.each(resources, (i, elem: Resource) => {
             $('#grid').append('<tr onclick="ClickDetails(this);">' + PrintResource(elem) + '</tr>');
@@ -48,7 +51,8 @@ function GetResources(): void {
     .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Resources');
         });
-    
+
+    return tmp;
 }
 
 //getByID

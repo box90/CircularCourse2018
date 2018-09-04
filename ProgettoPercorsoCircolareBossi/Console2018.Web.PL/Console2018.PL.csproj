@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="scripts\application\tsconfig.json" />
     <None Include="scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="scripts\jquery-3.3.1.js" />
     <Content Include="scripts\jquery-3.3.1.min.js" />
@@ -166,7 +167,6 @@
     <TypeScriptCompile Include="scripts\application\app.ts" />
     <TypeScriptCompile Include="scripts\application\course.ts" />
     <TypeScriptCompile Include="scripts\application\resource.ts" />
-    <TypeScriptCompile Include="scripts\application\shared.ts" />
     <TypeScriptCompile Include="scripts\application\subscription.ts" />
     <TypeScriptCompile Include="scripts\application\teacher.ts" />
     <TypeScriptCompile Include="scripts\index.d.ts" />

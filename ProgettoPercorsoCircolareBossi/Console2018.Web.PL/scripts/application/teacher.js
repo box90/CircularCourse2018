@@ -13,7 +13,7 @@ var retrievedTeachers = [];
 //#Region Code
 function GetTeachers() {
     var tmp = [];
-    $.getJSON(webApiUri + '/teacher')
+    $.getJSON(webApiUriTeacher)
         .done(function (courses) {
         tmp = courses;
     })
@@ -24,7 +24,7 @@ function GetTeachers() {
 }
 function GetTeacher(id) {
     var tmp = null;
-    $.getJSON(webApiUri + '/teacher/' + id)
+    $.getJSON(webApiUriTeacher + '/' + id)
         .done(function (res) {
         tmp = res;
     })
@@ -36,7 +36,7 @@ function GetTeacher(id) {
 function createTeacher() {
     $.ajax({
         type: "POST",
-        url: webApiUri + '/teacher/insert',
+        url: webApiUriTeacher + '/insert',
         contentType: 'application/json',
         data: JSON.stringify({
         /*
@@ -57,7 +57,7 @@ function createTeacher() {
 function updateTeacher() {
     $.ajax({
         type: "PUT",
-        url: webApiUri + '/teacher/update',
+        url: webApiUriTeacher + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
         //inserire i campi del form dei dettagli della risorsa
@@ -75,7 +75,7 @@ function deleteTeacher(resourceId) {
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUri + '/teacher/remove/?id=' + resourceId,
+        url: webApiUriTeacher + '/remove/' + resourceId,
         contentType: 'application/json'
     }).done(function (data) {
         //console.log(JSON.stringify(data));
