@@ -69,6 +69,7 @@
                                         <th>Id</th>
                                         <th>Title</th>
                                         <th>RefYear</th>
+                                        <th>IsCircular</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -106,14 +107,17 @@
                                     <label for="endDate">EndDate</label>
                                     <input type="date" class="form-control" id="endDate" />
                                 </div>
-                                <div class="form-group row">
+                                <!--Hidden, use dropdown for Resources-->
+                                <div class="form-group row" hidden>
                                     <label for="idCoordinator">ID_Coordinator</label>
                                     <input type="number" class="form-control" id="idCoordinator" />
                                 </div>
                                 <div class="form-group row">
                                     <!--DropDown for Resources-->
                                     <label for="selectBox">Coordinator</label>
-                                    <select id="selectBox" name="selectBox" class="dropdown-toggle"></select>
+                                    <select id="selectBox" name="selectBox" class="dropdown-toggle">
+                                        <option value="" selected></option>
+                                    </select>
                                 </div>
                                 <div class="form-group row">
                                     <div class="form-check">
@@ -168,9 +172,16 @@
                                     <label for="endDateCreate">EndDate</label>
                                     <input type="date" class="form-control" id="endDateCreate" />
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" hidden>
                                     <label for="idCoordinatorCreate">ID_Coordinator</label>
                                     <input type="number" class="form-control" id="idCoordinatorCreate" />
+                                </div>
+                                <div class="form-group row">
+                                    <!--DropDown for Resources-->
+                                    <span class="label-text">Coordinator</span>
+                                    <select id="selectBoxCreate" name="selectBoxCreate" class="dropdown-toggle">
+                                        <option value="" selected></option>
+                                    </select>
                                 </div>
                                 <div class="form-group row">
                                     <div class="form-check">

@@ -71,11 +71,14 @@ function GetCourse(id: number): Course {
             $('#endDate').val(endD);
             $('#idCoordinator').val(tmp.ID_Coordinator);
             $('#circular').prop('checked', tmp.IsCircular);
+            $('#selectBox').val(tmp.ID_Coordinator);
         }
     })
         .done(function (data) {
             $('#updateButton').prop('disabled', false);
             $('#deleteButton').prop('disabled', false);
+            $('#selectBox').prop('disabled', false);
+
         })
     .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Course ' + id);
@@ -96,7 +99,8 @@ function createCourse(): void {
             RefYear: $('#yearCourseCreate').val(),
             StartDate: $('#startDateCreate').val(),
             EndDate: $('#endDateCreate').val(),
-            ID_Coordinator: $('#idCoordinatorCreate').val(),
+            //ID_Coordinator: $('#idCoordinatorCreate').val(),
+            ID_Coordinator: $('#selectBoxCreate').val(),
             IsCircular: $('#circularCreate').prop('checked')
         })
     }).done(function (data) {
@@ -120,7 +124,8 @@ function updateCourse(): void {
             StartDate: $('#startDate').val(),
             EndDate: $('#endDate').val(),
             IsCircular: $('#circular').prop('checked'),
-            ID_Coordinator: $('#idCoordinator').val()
+            //ID_Coordinator: $('#idCoordinator').val()
+            ID_Coordinator: $('#selectBox').val()
         })
     }).done(function (data) {
         //console.log(JSON.stringify(data));
@@ -152,7 +157,17 @@ function deleteCourse(courseId: number): void {
 
 //#region OtherFunctions
 function PrintCourse(item: Course): string {
-    let result: string = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Title + '</td>' + '<td>' + item.RefYear.toString() + '</td>';
+    let circular: string;
+    let result: string;
+
+    if (item.IsCircular) {
+        circular = 'checked';
+    }
+    else {
+        circular = 'unchecked';
+    }
+
+    result = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Title + '</td>' + '<td>' + item.RefYear.toString() + '</td>' + '<td><input type="checkbox" ' + circular + ' disabled></td>';
     return result;
 }
 
@@ -172,6 +187,7 @@ function CleanAllCoursePage(): void {
     $('#endDate').val("");
     $('#idCoordinator').val("");
     $('#circular').prop('checked', false);
+    $('#selectBox').prop('disabled', true);
     //button
     $('#updateButton').prop('disabled', true);
     $('#deleteButton').prop('disabled', true);
@@ -189,13 +205,22 @@ function CleanAllCoursePage(): void {
 function PopulateDropdown(): void {
     let values: Resource[] = [];
 
-    $.getJSON('http://localhost:53141/api/resource/avaiable', function (resources: Resource[]) {
+    $.getJSON('http://localhost:53141/api/resource', function (resources: Resource[]) {
         values = resources;
         var option = '';
+        var optionCreate = '';
         $.each(values, (i, elem: Resource) => {
-            option += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
+            if (values[i].IsAvaiable) {
+                option += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
+                optionCreate += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
+            }
+            else {
+                option += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
+            }
+           
         });
         $('#selectBox').append(option);
+        $('#selectBoxCreate').append(optionCreate);
 
     })
         .fail(function (jqXHR, textStatus, err) {
