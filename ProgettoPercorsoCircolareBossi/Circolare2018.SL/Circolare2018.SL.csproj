@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Models\CourseModel.cs" />
     <Compile Include="Models\ResourceModel.cs" />
+    <Compile Include="Models\SubscriptionCourseResourceModel.cs" />
     <Compile Include="Models\SubscriptionModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

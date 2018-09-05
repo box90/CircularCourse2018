@@ -12,14 +12,12 @@
     <!-- Bootstrap core CSS -->
     <link href="../../Content/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Circolare2018</a>
+        <a class="navbar-brand" href="../../index.html">Circolare2018</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,34 +48,124 @@
             </div>
         </div>
 
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-3">
-                    <h2>Resources</h2>
-                    <p>Risorse</p>
-                    <p><a class="btn btn-secondary" href="pages/resource/HomePageResource.html" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h2>Courses</h2>
-                    <p>Percorsi</p>
-                    <p><a class="btn btn-secondary" href="pages/course/HomePageCourse.html" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h2>Subscriptions</h2>
-                    <p>Iscrizioni</p>
-                    <p><a class="btn btn-secondary" href="pages/subscriptions/HomePageSubscriptions.html" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h2>Teachers</h2>
-                    <p>Insegnanti</p>
-                    <p><a class="btn btn-secondary" href="pages/teachers/HomePageTeachers.html" role="button">View details &raquo;</a></p>
+        <div id="loader">
+            <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif">
+        </div>
+
+        <div id="resume" class="container">
+            <div id="buttonOpenCreate">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#ModalCreate">
+                    New Subscription
+                </button>
+            </div>
+            <table class="col-xl-12" style="vertical-align:top">
+                <tr>
+                    <td>
+                        <!-- List of elements -->
+                        <div id="list" class="">
+                            <table id="grid" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th hidden>ID</th>
+                                        <th>Course</th>
+                                        <th>Resource</th>
+                                        <th>StartDate</th>
+                                        <th>IsAdmitted</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        <!--Space between-->
+                    </td>
+                    <td>
+                        <!-- Element Details -->
+                        <div id="details" class="container" style="vertical-align:top">
+                            <form>
+                                <div class="form-group row" hidden>
+                                    <label for="idSub">IDSub</label>
+                                    <input type="number" class="form-control" id="idSub" disabled />
+                                </div>
+                                <div class="form-group row" hidden>
+                                    <label for="idCourse">IDCourse</label>
+                                    <input type="number" class="form-control" id="idCourse" disabled />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="titleCourse">Course</label>
+                                    <input type="text" class="form-control" id="titleCourse" disabled />
+                                </div>
+                                <div class="form-group row" hidden>
+                                    <label for="idResource">IDResource</label>
+                                    <input type="number" class="form-control" id="idResource" disabled />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="nameResource">Resource</label>
+                                    <input type="text" class="form-control" id="nameResource" disabled />
+                                </div>
+                                <div class="form-group row" hidden>
+                                    <label for="idCP">IDCp</label>
+                                    <input type="number" class="form-control" id="idCP" disabled />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="nameCp">Cp</label>
+                                    <input type="text" class="form-control" id="nameCp" disabled />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="startDate">StartDate</label>
+                                    <input type="date" class="form-control" id="startDate" />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="maxEndDate">MaxEndDate</label>
+                                    <input type="date" class="form-control" id="maxEndDate" disabled/>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="notes">Notes</label>
+                                    <input type="text" class="form-control" id="notes" />
+                                </div>
+                                <div class="form-group row">
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="checkbox" id="admitted">
+                                            <span class="label-text">IsAdmitted</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <button id="updateButton" type="button" class="btn btn-outline-warning" onclick="updateSubscription();">Update</button>
+                                        <button id="deleteButton" type="button" class="btn btn-outline-danger" onclick="deleteSubscription($('#idSub').val());">Delete</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <hr>
+        <!-- Modal -->
+        <div class="modal fade" id="ModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Create Resource</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="details" class="container" style="vertical-align:top">
+                            <!-- Modal Form -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="buttonClose" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
+                        <button id="buttonCreate" type="button" class="btn btn-success" onclick="" data-dismiss="modal">Create</button>
+                    </div>
                 </div>
             </div>
-
-            <hr>
-
-        </div> <!-- /container -->
+        </div>
 
     </main>
 
@@ -88,11 +176,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../script/jquery-3.3.1.slim.min.js"><\/script>')</script>
+    <script src="../../scripts/jquery-3.3.1.min.js"></script>
     <script src="../../scripts/bootstrap.min.js"></script>
-
-
+    <script src="../../scripts/application/subscription.js"></script>
 
 
 </body>

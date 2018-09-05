@@ -1,5 +1,3 @@
-//import { Resource } from "./resource";
-//import { webApiUri} from './shared'
 //#region Classes
 var Course = /** @class */ (function () {
     function Course() {
@@ -18,7 +16,7 @@ $(document).ready(function () {
     $('#resume').hide();
     CleanAllCoursePage();
     GetCourses();
-    PopulateDropdown();
+    PopulateDropdownResource();
 });
 //#endregion
 //#Region API
@@ -28,7 +26,7 @@ function GetCourses() {
         tmp = courses;
         $('#grid tbody').empty();
         $.each(courses, function (i, elem) {
-            $('#grid').append('<tr onclick="ClickDetailsCourse(this);">' + PrintCourse(elem) + '</tr>');
+            $('#grid').append('<tr>' + PrintCourse(elem) + '</tr>');
         });
     })
         .done(function (data) {
@@ -129,6 +127,29 @@ function deleteCourse(courseId) {
         alert("An error has occurred while deleting Course " + courseId);
     });
 }
+//API SUBSCRIPTION
+function modalCreateSubscription() {
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:53141/api/subscription/insert',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            ID: '',
+            ID_Course: $('#idCourse4Sub').val(),
+            ID_Resource: $('#selectBoxR4Sub').val(),
+            ID_CP: $('#selectBoxCP4Sub').val(),
+            StartDate: $('#startDate4Sub').val(),
+            MaxEndDate: '',
+            IsAdmitted: $('#admitted4Sub').prop('checked'),
+            Notes: $('#notes4Sub').val()
+        })
+    })
+        .done(function (data) {
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+        alert("An error has occurred while creating Subscription");
+    });
+}
 //#endregion
 //#region OtherFunctions
 function PrintCourse(item) {
@@ -140,7 +161,7 @@ function PrintCourse(item) {
     else {
         circular = 'unchecked';
     }
-    result = '<td class="toBeFound">' + item.ID.toString() + '</td>' + '<td>' + item.Title + '</td>' + '<td>' + item.RefYear.toString() + '</td>' + '<td><input type="checkbox" ' + circular + ' disabled></td>';
+    result = '<td class="toBeFound" onclick="ClickDetailsCourse(this);">' + item.ID.toString() + '</td>' + '<td>' + item.Title + '</td>' + '<td>' + item.RefYear.toString() + '</td>' + '<td><input type="checkbox" ' + circular + ' disabled></td><td>' + AppendModalButton(item.ID) + '</td>';
     return result;
 }
 function ClickDetailsCourse(x) {
@@ -171,12 +192,13 @@ function CleanAllCoursePage() {
     $('#idCoordinatorCreate').val('');
     $('#circularCreate').prop('checked', false);
 }
-function PopulateDropdown() {
+function PopulateDropdownResource() {
     var values = [];
     $.getJSON('http://localhost:53141/api/resource', function (resources) {
         values = resources;
         var option = '';
         var optionCreate = '';
+        var optionSubscription = '';
         $.each(values, function (i, elem) {
             if (values[i].IsAvaiable) {
                 option += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
@@ -185,13 +207,56 @@ function PopulateDropdown() {
             else {
                 option += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
             }
+            //add Cp list for Modal Subscription
+            if (values[i].IsCP) {
+                optionSubscription += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
+            }
         });
         $('#selectBox').append(option);
         $('#selectBoxCreate').append(optionCreate);
+        //append options for Modal SubscriptionCreate
+        $('#selectBoxR4Sub').append(option);
+        $('#selectBoxCP4Sub').append(optionSubscription);
     })
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resources');
     });
+}
+function PopulateListOfSubscriptionsModal(idCourse) {
+    $.getJSON('http://localhost:53141/api/subscription' + '/course/' + idCourse, function (subscriptionsMixed) {
+        // values = subscriptionsMixed;
+        $('#gridSubscriptionModal').empty();
+        $.each(subscriptionsMixed, function (i, elem) {
+            $('#gridSubscriptionModal').append('<tr>' + PrintSubMixed4Modal(elem) + '</tr>');
+        });
+    })
+        .done(function (data) {
+        $('#IDCourseParameter').text(idCourse);
+    })
+        .fail(function (jqXHR, textStatus, err) {
+        alert('An error occurred while loading Subscriptions');
+    });
+}
+function AppendModalButton(id) {
+    var code;
+    code = '<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalSubscriptionList" onclick="PopulateListOfSubscriptionsModal(' + id + ');">...</button>';
+    return code;
+}
+function PrintSubMixed4Modal(elem) {
+    var admitted;
+    var result;
+    if (elem.IsAdmitted) {
+        admitted = 'checked';
+    }
+    else {
+        admitted = 'unchecked';
+    }
+    result = '<td class="toBeFound" hidden>' + elem.ID + '</td>' + '<td>' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td>' + elem.StartDate.toString().substring(0, elem.StartDate.toString().indexOf('T')) + '</td>' + '<td>' + elem.MaxEndDate.toString().substring(0, elem.MaxEndDate.toString().indexOf('T')) + '<td><input type="checkbox" ' + admitted + ' disabled></td>';
+    return result;
+}
+function PassIDCourseParameter() {
+    var idC = $('#IDCourseParameter').text();
+    $('#idCourse4Sub').val(Number(idC));
 }
 //#endregion
 //# sourceMappingURL=course.js.map

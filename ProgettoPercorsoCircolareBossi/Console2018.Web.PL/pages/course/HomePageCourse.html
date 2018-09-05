@@ -70,6 +70,7 @@
                                         <th>Title</th>
                                         <th>RefYear</th>
                                         <th>IsCircular</th>
+                                        <th>Subscriptions</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -139,7 +140,7 @@
         </div>
 
         <hr>
-        <!-- Modal -->
+        <!-- Modal Create Course-->
         <div class="modal fade" id="ModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -201,6 +202,98 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Modal List of Subscriptions for Course-->
+        <div class="modal fade" id="ModalSubscriptionList" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="SubscriptionListModalLongTitle">List of Subscriptions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="IDCourseParameter" hidden></div>
+                    <div class="modal-body">
+                        <table id="gridSubscriptionModal" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th hidden>ID</th>
+                                    <th>Resource</th>
+                                    <th>StartDate</th>
+                                    <th>MaxEndDate</th>
+                                    <th>IsAdmitted</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="buttonCloseModalSubList" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSubscriptionCreate" onclick="PassIDCourseParameter();" data-dismiss="modal">New Subscription</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal Create Subscription for Course-->
+        <div class="modal fade" id="ModalSubscriptionCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="SubscriptionCreateModalLongTitle">List of Subscriptions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row" hidden>
+                                <label for="idCourse4Sub">IDCourse</label>
+                                <input type="number" class="form-control" id="idCourse4Sub" disabled />
+                            </div>
+                            <div class="form-group row">
+                                <!--DropDown for Resources-->
+                                <label for="selectBoxR4Sub">Resource</label>
+                                <select id="selectBoxR4Sub" name="selectBoxR4Sub" class="dropdown-toggle">
+                                    <option value="" selected></option>
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <!--DropDown for CP_Resources-->
+                                <label for="selectBoxCP4Sub">CP</label>
+                                <select id="selectBoxCP4Sub" name="selectBoxCP4Sub" class="dropdown-toggle">
+                                    <option value="" selected></option>
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <label for="startDate4Sub">StartDate</label>
+                                <input type="date" class="form-control" id="startDate4Sub" />
+                            </div>
+                            <div class="form-group row">
+                                <label for="notes4Sub">Notes</label>
+                                <input type="text" class="form-control" id="notes4Sub" />
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-check">
+                                    <label>
+                                        <input type="checkbox" id="admitted4Sub">
+                                        <span class="label-text">IsAdmitted</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="buttonCloseModalSubList" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
+                        <button id="buttonCreateModalSub" type="button" class="btn btn-success" onclick=" modalCreateSubscription();" data-dismiss="modal">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </main>
 

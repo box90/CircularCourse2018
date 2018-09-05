@@ -52,7 +52,7 @@ function GetResource(id) {
             $('#name').val(tmp.Name);
             $('#surname').val(tmp.Surname);
             $('#avaiable').prop('checked', tmp.IsAvaiable);
-            $('#cp').prop('checked', tmp.IsCp);
+            $('#cp').prop('checked', tmp.IsCP);
         }
     })
         .done(function (data) {

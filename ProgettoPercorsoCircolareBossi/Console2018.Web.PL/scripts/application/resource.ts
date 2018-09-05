@@ -7,7 +7,7 @@ class Resource {
     public Name: string;
     public Surname: string;
     public IsAvaiable: boolean;
-    public IsCp: boolean;
+    public IsCP: boolean;
 }
 //#endregion
 
@@ -67,7 +67,7 @@ function GetResource(id: number): Resource {
             $('#name').val(tmp.Name);
             $('#surname').val(tmp.Surname);
             $('#avaiable').prop('checked', tmp.IsAvaiable);
-            $('#cp').prop('checked', tmp.IsCp);
+            $('#cp').prop('checked', tmp.IsCP);
         }        
     })
         .done(function (data) {
