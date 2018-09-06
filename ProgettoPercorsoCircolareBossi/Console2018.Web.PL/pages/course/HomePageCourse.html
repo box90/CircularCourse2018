@@ -129,6 +129,7 @@
                                     </div>
                                     <div class="form-check">
                                         <button id="updateButton" type="button" class="btn btn-outline-warning" onclick="updateCourse();">Update</button>
+                                        <button type="button" id="modalTeachingListButton" class="btn btn-info" data-toggle="modal" data-target="#ModalTeachingList" onclick="ModalTeacherOfCourse($('#idCourse').val());">Teachers</button>
                                         <button id="deleteButton" type="button" class="btn btn-outline-danger" onclick="deleteCourse($('#idCourse').val());">Delete</button>
                                     </div>
                                 </div>
@@ -293,6 +294,38 @@
                 </div>
             </div>
         </div>
+
+        <!--Modal List of Teaching-->
+        <div class="modal fade" id="ModalTeachingList" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">List of Teachings</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="IDCourseParameter4T" hidden></div>
+                    <div class="modal-body">
+                        <table id="gridTeachModal" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Resource</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#" onclick="" data-dismiss="modal">New Teaching</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
     </main>

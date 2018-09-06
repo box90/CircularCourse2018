@@ -119,6 +119,7 @@
                                     </div>
                                     <div class="form-check">
                                         <button id="updateButton" type="button" class="btn btn-outline-warning" onclick="updateResource();">Update</button>
+                                        <button type="button" id="modalTeachingListButton" class="btn btn-info" data-toggle="modal" data-target="#ModalTeachingList" onclick="ModalTeacherOfResource($('#id').val());">Teaching</button>
                                         <button id="deleteButton" type="button" class="btn btn-outline-danger" onclick="DeleteResource($('#id').val());">Delete</button>
                                     </div>
                                 </div>
@@ -145,7 +146,7 @@
                             <form>
                                 <div class="form-group row">
                                     <label for="idCreate">ID</label>
-                                    <input type="number" class="form-control" id="idCreate"/>
+                                    <input type="number" class="form-control" id="idCreate" />
                                 </div>
                                 <div class="form-group row">
                                     <label for="nameCreate">Name</label>
@@ -181,6 +182,75 @@
                     <div class="modal-footer">
                         <button id="buttonClose" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="CleanAll();">Close</button>
                         <button id="buttonCreate" type="button" class="btn btn-success" onclick="createResource();" data-dismiss="modal">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Modal List of Teaching-->
+        <div class="modal fade" id="ModalTeachingList" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">List of Teachings</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="IDResourceParameter4T" hidden></div>
+                    <div class="modal-body">
+                        <table id="gridTeachModal" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Resource</th>
+                                    <th>Course</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalTeachingCreate" onclick="PassIDResourceParameter();" data-dismiss="modal">New Teaching</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal Create Teaching for Course-->
+        <div class="modal fade" id="ModalTeachingCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">Create Teaching</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row" hidden>
+                                <label for="idResource4Teach">IDCourse</label>
+                                <input type="number" class="form-control" id="idResource4Teach" disabled />
+                            </div>
+                            <div class="form-group row">
+                                <!--DropDown for Courses-->
+                                <label for="selectBoxCourse4Teach">Courses</label>
+                                <select id="selectBoxCourse4Teach" name="selectBoxCourse4Teach" class="dropdown-toggle">
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <label for="notes4Teach">Notes</label>
+                                <input type="text" class="form-control" id="notes4Teach" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="buttonCloseModalTeachCreate" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
+                        <button type="button" id="buttonCreateModalTeach" type="button" class="btn btn-success" onclick="modalCreateTeachingOfResource();" data-dismiss="modal">Add Teach</button>
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ namespace Circolare2018.SL.Models
             {
                 ID = model.ID,
                 ID_Resource = model.ID_Resource,
-                ID_Course = model.ID_Resource,
+                ID_Course = model.ID_Course,
                 Notes = model.Notes
             };
         }

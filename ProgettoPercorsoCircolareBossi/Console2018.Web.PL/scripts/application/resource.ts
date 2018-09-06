@@ -28,6 +28,7 @@ $(document).ready(() => {
     $('#resume').hide();
     CleanAll();
     GetResources();
+    PopulateDropdownCourses();
 });
 //#endregion
 
@@ -75,6 +76,7 @@ function GetResource(id: number): Resource {
         .done(function (data) {
             $('#updateButton').prop('disabled', false);
             $('#deleteButton').prop('disabled', false);
+            $('#modalTeachingListButton').prop('disabled', false);
     })
         .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Resource ' + id);
@@ -146,6 +148,47 @@ function DeleteResource(resourceId: number): void {
     });
 }
 
+
+//API TEACHER
+function ModalTeacherOfResource(idResource: number): TeacherMixed[] {
+    let tmp: TeacherMixed[] = [];
+
+    $.getJSON('http://localhost:53141/api/teacher/resource/' + idResource, function (teachers: TeacherMixed[]) {
+        tmp = teachers;
+        $('#gridTeachModal tbody').empty();
+        $.each(teachers, (i, elem: TeacherMixed) => {
+            $('#gridTeachModal').append('<tr>' + PrintTeaching(elem) + '</tr>');
+        });
+    })
+        .done(function (data) {
+            $('#IDResourceParameter4T').text($('#id').val().toString());
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            alert('An error occurred while loading Courses');
+        });
+
+    return tmp;
+}
+
+function modalCreateTeachingOfResource(): void {
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:53141/api/teacher/insert',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            ID: '',
+            ID_Resource: $('#idResource4Teach').val(),
+            ID_Course: $('#selectBoxCourse4Teach').val(),
+            Notes: $('#notes4Teach').val()
+        })
+    })
+        .done(function (data) {
+            _self.CleanAll();
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            alert("An error has occurred while creating Teaching");
+        });
+}
 //#endregion
 
 
@@ -175,6 +218,7 @@ function CleanAll(): void {
     //Disable Buttons
     $('#updateButton').prop('disabled', true);
     $('#deleteButton').prop('disabled', true);
+    $('#modalTeachingListButton').prop('disabled', true);
     //Clean Modal
     $('#idCreate').val("");
     $('#nameCreate').val("");
@@ -182,5 +226,38 @@ function CleanAll(): void {
     $('#avaiableCreate').prop('checked', false);
     $('#cpCreate').prop('checked', false);
     $('#teacherCreate').prop('checked', false);
+    //clean modal CreateTeaching
+    $('#selectBoxCourse4Teach').val('');
+    $('#idCourse4Teach').val('');
+    $('#notes4Teach').val('');
 }
+
+function PrintTeaching(elem: TeacherMixed): string {
+    let res: string = '';
+    res = '<td> ' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td>' + elem.CourseModel.Title + '</td>' + '<td> ' + elem.Notes + '</td>';
+    return res;
+}
+
+function PopulateDropdownCourses(): void {
+    let values: Course[] = [];
+
+    $.getJSON('http://localhost:53141/api/course', function (course: Course[]) {
+        values = course;
+        var option = '';
+        $.each(values, (i, elem: Course) => {
+            option += '<option value="' + values[i].ID + '">' + values[i].Title + ' ' + values[i].RefYear.toString() + '</option>';
+            
+        });
+        $('#selectBoxCourse4Teach').append(option);
+    })
+        .fail(function (jqXHR, textStatus, err) {
+            alert('An error occurred while loading Resources');
+        });
+}
+
+function PassIDResourceParameter(): void {
+    var idC = $('#IDResourceParameter4T').text();
+    $('#idResource4Teach').val(Number(idC));
+}
+
 //#endregion

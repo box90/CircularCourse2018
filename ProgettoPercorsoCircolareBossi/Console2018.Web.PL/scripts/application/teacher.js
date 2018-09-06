@@ -5,12 +5,17 @@ var Teacher = /** @class */ (function () {
     }
     return Teacher;
 }());
+var TeacherMixed = /** @class */ (function () {
+    function TeacherMixed() {
+    }
+    return TeacherMixed;
+}());
 //#endregion
 //#region Variables
 var webApiUriTeacher = 'http://localhost:53141/api/teacher';
 var retrievedTeachers = [];
 //#endregion
-//#Region Code
+//#Region API
 function GetTeachers() {
     var tmp = [];
     $.getJSON(webApiUriTeacher)
@@ -84,5 +89,7 @@ function deleteTeacher(resourceId) {
         alert("An error has occurred while deleting Teacher " + resourceId);
     });
 }
+//#endregion
+//#Region otherFunctions
 //#endregion
 //# sourceMappingURL=teacher.js.map

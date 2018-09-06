@@ -18,7 +18,8 @@ create table [RESOURCE]
 	[Name]			varchar(20) not null,
 	[Surname]		varchar(20) not null,
 	IsAvaiable		bit default 1,
-	IsCP			bit default 0
+	IsCP			bit default 0,
+	IsTeacher		bit default 0
 )
 	
 create table [COURSE]

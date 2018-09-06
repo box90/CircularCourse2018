@@ -73,6 +73,7 @@ function GetCourse(id: number): Course {
         .done(function (data) {
             $('#updateButton').prop('disabled', false);
             $('#deleteButton').prop('disabled', false);
+            $('#modalTeachingListButton').prop('disabled', false);
             $('#selectBox').prop('disabled', false);
 
         })
@@ -173,6 +174,28 @@ function modalCreateSubscription(): void {
         alert("An error has occurred while creating Subscription");
     });
 }
+
+
+//API TEACHER
+function ModalTeacherOfCourse(idCourse: number): TeacherMixed[] {
+    let tmp: TeacherMixed[] = [];
+
+    $.getJSON('http://localhost:53141/api/teacher/course/' + idCourse, function (teachers: TeacherMixed[]) {
+        tmp = teachers;
+        $('#gridTeachModal tbody').empty();
+        $.each(teachers, (i, elem: TeacherMixed) => {
+            $('#gridTeachModal').append('<tr>' + PrintTeacher(elem) + '</tr>');
+        });
+    })
+        .done(function (data) {
+            $('#IDCourseParameter4T').text($('#idCourse').val().toString());
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            alert('An error occurred while loading Courses');
+        });
+
+    return tmp;
+}
 //#endregion
 
 
@@ -212,6 +235,7 @@ function CleanAllCoursePage(): void {
     //button
     $('#updateButton').prop('disabled', true);
     $('#deleteButton').prop('disabled', true);
+    $('#modalTeachingListButton').prop('disabled', true);
     //modalCreate
     $('#titleCourseCreate').val('');
     $('#descriptionCourseCreate').val('');
@@ -220,6 +244,13 @@ function CleanAllCoursePage(): void {
     $('#endDateCreate').val('');
     $('#idCoordinatorCreate').val('');
     $('#circularCreate').prop('checked', false);
+    //modalCreateSub
+    $('#idCourse4Sub').val('');
+    $('#selectBoxR4Sub').val('');
+    $('#selectBoxCP4Sub').val('');
+    $('#startDate4Sub').val('');
+    $('#admitted4Sub').prop('checked', false);
+    $('#notes4Sub').val('');
 }
 
 
@@ -275,7 +306,7 @@ function PopulateListOfSubscriptionsModal(idCourse: number): void {
 function AppendModalButton(id: number): string {
     let code: string;
 
-    code = '<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalSubscriptionList" onclick="PopulateListOfSubscriptionsModal(' + id + ');">...</button>';
+    code = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalSubscriptionList" onclick="PopulateListOfSubscriptionsModal(' + id + ');">...</button>';
 
     return code;
 }
@@ -298,5 +329,11 @@ function PrintSubMixed4Modal(elem: SubscriptionMixed): string {
 function PassIDCourseParameter(): void{
     var idC = $('#IDCourseParameter').text();
     $('#idCourse4Sub').val(Number(idC));
+}
+
+function PrintTeacher(elem: TeacherMixed): string {
+    let res: string = '';
+    res = '<td> ' + elem.CourseModel.Title + '</td>' + '<td> ' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td> ' + elem.Notes + '</td>';
+    return res;
 }
 //#endregion

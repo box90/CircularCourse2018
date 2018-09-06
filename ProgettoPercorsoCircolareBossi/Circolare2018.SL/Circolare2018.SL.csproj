@@ -103,6 +103,7 @@
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Models\SubscriptionCourseResourceModel.cs" />
     <Compile Include="Models\SubscriptionModel.cs" />
+    <Compile Include="Models\TeacherCourseResourceModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

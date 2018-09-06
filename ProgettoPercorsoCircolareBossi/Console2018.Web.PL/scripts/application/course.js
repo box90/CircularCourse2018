@@ -59,6 +59,7 @@ function GetCourse(id) {
         .done(function (data) {
         $('#updateButton').prop('disabled', false);
         $('#deleteButton').prop('disabled', false);
+        $('#modalTeachingListButton').prop('disabled', false);
         $('#selectBox').prop('disabled', false);
     })
         .fail(function (jqXHR, textStatus, err) {
@@ -150,6 +151,24 @@ function modalCreateSubscription() {
         alert("An error has occurred while creating Subscription");
     });
 }
+//API TEACHER
+function ModalTeacherOfCourse(idCourse) {
+    var tmp = [];
+    $.getJSON('http://localhost:53141/api/teacher/course/' + idCourse, function (teachers) {
+        tmp = teachers;
+        $('#gridTeachModal tbody').empty();
+        $.each(teachers, function (i, elem) {
+            $('#gridTeachModal').append('<tr>' + PrintTeacher(elem) + '</tr>');
+        });
+    })
+        .done(function (data) {
+        $('#IDCourseParameter4T').text($('#idCourse').val().toString());
+    })
+        .fail(function (jqXHR, textStatus, err) {
+        alert('An error occurred while loading Courses');
+    });
+    return tmp;
+}
 //#endregion
 //#region OtherFunctions
 function PrintCourse(item) {
@@ -183,6 +202,7 @@ function CleanAllCoursePage() {
     //button
     $('#updateButton').prop('disabled', true);
     $('#deleteButton').prop('disabled', true);
+    $('#modalTeachingListButton').prop('disabled', true);
     //modalCreate
     $('#titleCourseCreate').val('');
     $('#descriptionCourseCreate').val('');
@@ -191,6 +211,13 @@ function CleanAllCoursePage() {
     $('#endDateCreate').val('');
     $('#idCoordinatorCreate').val('');
     $('#circularCreate').prop('checked', false);
+    //modalCreateSub
+    $('#idCourse4Sub').val('');
+    $('#selectBoxR4Sub').val('');
+    $('#selectBoxCP4Sub').val('');
+    $('#startDate4Sub').val('');
+    $('#admitted4Sub').prop('checked', false);
+    $('#notes4Sub').val('');
 }
 function PopulateDropdownResource() {
     var values = [];
@@ -239,7 +266,7 @@ function PopulateListOfSubscriptionsModal(idCourse) {
 }
 function AppendModalButton(id) {
     var code;
-    code = '<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalSubscriptionList" onclick="PopulateListOfSubscriptionsModal(' + id + ');">...</button>';
+    code = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalSubscriptionList" onclick="PopulateListOfSubscriptionsModal(' + id + ');">...</button>';
     return code;
 }
 function PrintSubMixed4Modal(elem) {
@@ -257,6 +284,11 @@ function PrintSubMixed4Modal(elem) {
 function PassIDCourseParameter() {
     var idC = $('#IDCourseParameter').text();
     $('#idCourse4Sub').val(Number(idC));
+}
+function PrintTeacher(elem) {
+    var res = '';
+    res = '<td> ' + elem.CourseModel.Title + '</td>' + '<td> ' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td> ' + elem.Notes + '</td>';
+    return res;
 }
 //#endregion
 //# sourceMappingURL=course.js.map

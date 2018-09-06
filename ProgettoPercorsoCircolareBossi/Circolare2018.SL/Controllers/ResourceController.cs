@@ -42,6 +42,21 @@ namespace Circolare2018.SL.Controllers
         }
 
         [HttpGet]
+        [Route("teacher")]
+        public IEnumerable<Models.ResourceModel> GetTeacherResources()
+        {
+            List<ResourceModel> Rmodel = new List<ResourceModel>();
+
+            foreach (Entities.RESOURCE res in ResourceManager.GetAllResources().Where(r => r.IsTeacher == true).ToList())
+            {
+                Rmodel.Add(ResourceModel.MapModel(res));
+            }
+
+            return Rmodel;
+        }
+    
+
+        [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetResource(int id)
         {

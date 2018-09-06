@@ -8,6 +8,14 @@ class Teacher {
     public Notes: string;
 }
 
+class TeacherMixed {
+    public ID: number;
+    public ID_Resource: number;
+    public ID_Course: number;
+    public Notes: string;
+    public ResourceModel: Resource;
+    public CourseModel: Course;
+}
 //#endregion
 
 //#region Variables
@@ -15,7 +23,7 @@ const webApiUriTeacher: string = 'http://localhost:53141/api/teacher';
 let retrievedTeachers: Teacher[] = [];
 //#endregion
 
-//#Region Code
+//#Region API
 function GetTeachers(): Teacher[] {
     let tmp: Teacher[] = [];
 
@@ -99,5 +107,9 @@ function deleteTeacher(resourceId: number): void {
         alert("An error has occurred while deleting Teacher " + resourceId);
     });
 }
+//#endregion
+
+
+//#Region otherFunctions
 
 //#endregion

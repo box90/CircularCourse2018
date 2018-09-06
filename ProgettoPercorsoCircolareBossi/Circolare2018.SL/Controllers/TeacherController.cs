@@ -15,25 +15,60 @@ namespace Circolare2018.SL.Controllers
     public class TeacherController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IEnumerable<Models.TeacherCourseResourceModel> GetAll()
         {
-            List<TeacherModel> Tmodel = new List<TeacherModel>();
+            List<TeacherCourseResourceModel> Tmodel = new List<TeacherCourseResourceModel>();
 
             foreach (Entities.TEACHING teach in TeacherManager.GetAllTeachings())
             {
-                Tmodel.Add(TeacherModel.MapModel(teach));
+                Tmodel.Add(TeacherCourseResourceModel.MapModel(teach,teach.RESOURCE,teach.COURSE));
             }
 
-            return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Tmodel));
+            return Tmodel;
+        }
+
+        [HttpGet]
+        [Route("course/{idCourse:int}")]
+        public IEnumerable<Models.TeacherCourseResourceModel> GetTeachersOfCourse(int idCourse)
+        {
+            List<TeacherCourseResourceModel> Tmodel = new List<TeacherCourseResourceModel>();
+
+            foreach (Entities.TEACHING teach in TeacherManager.GetAllTeachings().Where(t => t.ID_Course == idCourse).ToList())
+            {
+                Tmodel.Add(TeacherCourseResourceModel.MapModel(teach, teach.RESOURCE, teach.COURSE));
+            }
+
+            return Tmodel;
+        }
+
+        [HttpGet]
+        [Route("resource/{idResource:int}")]
+        public IEnumerable<Models.TeacherCourseResourceModel> GetTeachingOfResource(int idResource)
+        {
+            List<TeacherCourseResourceModel> Tmodel = new List<TeacherCourseResourceModel>();
+
+            foreach (Entities.TEACHING teach in TeacherManager.GetAllTeachings().Where(t => t.ID_Resource == idResource).ToList())
+            {
+                Tmodel.Add(TeacherCourseResourceModel.MapModel(teach, teach.RESOURCE, teach.COURSE));
+            }
+
+            return Tmodel;
         }
 
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetTeacher(int id)
         {
-            TeacherModel Tmodel = TeacherModel.MapModel(TeacherManager.GetTeaching(id));
-
-            return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Tmodel));
+            Entities.TEACHING teaching = TeacherManager.GetTeaching(id);
+            if (teaching != null)
+            {
+                TeacherCourseResourceModel Tmodel = TeacherCourseResourceModel.MapModel(teaching,teaching.RESOURCE,teaching.COURSE);
+                return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(Tmodel));
+            }
+            else
+            {
+                return NotFound();
+            } 
         }
 
         [HttpPut]
