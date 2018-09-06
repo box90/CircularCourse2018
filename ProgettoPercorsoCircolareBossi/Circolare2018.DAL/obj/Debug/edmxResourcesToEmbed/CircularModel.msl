@@ -18,6 +18,7 @@
     <EntitySetMapping Name="RESOURCE">
       <EntityTypeMapping TypeName="DB_SiWeb3Model.RESOURCE">
         <MappingFragment StoreEntitySet="RESOURCE">
+          <ScalarProperty Name="IsTeacher" ColumnName="IsTeacher" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Name" ColumnName="Name" />

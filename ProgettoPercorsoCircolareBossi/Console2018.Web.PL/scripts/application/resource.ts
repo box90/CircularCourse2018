@@ -8,6 +8,7 @@ class Resource {
     public Surname: string;
     public IsAvaiable: boolean;
     public IsCP: boolean;
+    public IsTeacher: boolean;
 }
 //#endregion
 
@@ -68,6 +69,7 @@ function GetResource(id: number): Resource {
             $('#surname').val(tmp.Surname);
             $('#avaiable').prop('checked', tmp.IsAvaiable);
             $('#cp').prop('checked', tmp.IsCP);
+            $('#teacher').prop('checked', tmp.IsTeacher);
         }        
     })
         .done(function (data) {
@@ -92,7 +94,8 @@ function createResource(): void {
             Name: $('#nameCreate').val(),
             Surname: $('#surnameCreate').val(),
             IsAvaiable: $('#avaiableCreate').prop('checked'),
-            IsCp: $('#cpCreate').prop('checked')
+            IsCp: $('#cpCreate').prop('checked'),
+            IsTeacher: $('#teacherCreate').prop('checked') 
         })
     }).done(function (data) {
         //$('#ModalCreate').modal('hide');
@@ -115,7 +118,8 @@ function updateResource(): void {
             Name: $('#name').val(),
             Surname: $('#surname').val(),
             IsAvaiable: $('#avaiable').prop('checked'),
-            IsCp: $('#cp').prop('checked')
+            IsCP: $('#cp').prop('checked'),
+            IsTeacher: $('#teacher').prop('checked')
         })
     }).done(function (data) {
         _self.CleanAll();
@@ -167,6 +171,7 @@ function CleanAll(): void {
     $('#surname').val("");
     $('#avaiable').prop('checked', false);
     $('#cp').prop('checked', false);
+    $('#teacher').prop('checked', false);
     //Disable Buttons
     $('#updateButton').prop('disabled', true);
     $('#deleteButton').prop('disabled', true);
@@ -176,5 +181,6 @@ function CleanAll(): void {
     $('#surnameCreate').val("");
     $('#avaiableCreate').prop('checked', false);
     $('#cpCreate').prop('checked', false);
+    $('#teacherCreate').prop('checked', false);
 }
 //#endregion

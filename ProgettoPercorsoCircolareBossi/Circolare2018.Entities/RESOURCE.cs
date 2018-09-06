@@ -29,6 +29,7 @@ namespace Circolare2018.Entities
         public string Surname { get; set; }
         public Nullable<bool> IsAvaiable { get; set; }
         public Nullable<bool> IsCP { get; set; }
+        public Nullable<bool> IsTeacher { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<COURSE> COURSE { get; set; }

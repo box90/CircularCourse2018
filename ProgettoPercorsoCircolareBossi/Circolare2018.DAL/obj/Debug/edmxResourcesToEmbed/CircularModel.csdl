@@ -30,6 +30,7 @@
     <NavigationProperty Name="SUBSCRIPTION" Relationship="Self.FK__SUBSCRIPT__ID_CP__619B8048" FromRole="RESOURCE" ToRole="SUBSCRIPTION" />
     <NavigationProperty Name="SUBSCRIPTION1" Relationship="Self.FK__SUBSCRIPT__ID_Re__5FB337D6" FromRole="RESOURCE" ToRole="SUBSCRIPTION" />
     <NavigationProperty Name="TEACHING" Relationship="Self.FK__TEACHING__ID_Res__693CA210" FromRole="RESOURCE" ToRole="TEACHING" />
+    <Property Name="IsTeacher" Type="Boolean" />
   </EntityType>
   <EntityType Name="SUBSCRIPTION">
     <Key>

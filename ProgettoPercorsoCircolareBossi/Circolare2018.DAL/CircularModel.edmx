@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_SiWeb3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_SiWeb3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="COURSE">
           <Key>
             <PropertyRef Name="ID" />
@@ -28,6 +28,7 @@
           <Property Name="Surname" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="IsAvaiable" Type="bit" />
           <Property Name="IsCP" Type="bit" />
+          <Property Name="IsTeacher" Type="bit" />
         </EntityType>
         <EntityType Name="SUBSCRIPTION">
           <Key>
@@ -51,7 +52,7 @@
           <Property Name="ID_Course" Type="int" Nullable="false" />
           <Property Name="Notes" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK__COURSE__ID_Coord__59FA5E80">
+        <Association Name="FK__COURSE__ID_Coord__06CD04F7">
           <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="0..1" />
           <End Role="COURSE" Type="Self.COURSE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -63,7 +64,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SUBSCRIPT__ID_Co__60A75C0F">
+        <Association Name="FK__SUBSCRIPT__ID_Co__0A9D95DB">
           <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
           <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -75,7 +76,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SUBSCRIPT__ID_CP__619B8048">
+        <Association Name="FK__SUBSCRIPT__ID_CP__0B91BA14">
           <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
           <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,7 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SUBSCRIPT__ID_Re__5FB337D6">
+        <Association Name="FK__SUBSCRIPT__ID_Re__09A971A2">
           <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
           <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACHING__ID_Cou__6A30C649">
+        <Association Name="FK__TEACHING__ID_Cou__10566F31">
           <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
           <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACHING__ID_Res__693CA210">
+        <Association Name="FK__TEACHING__ID_Res__0F624AF8">
           <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
           <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -132,33 +133,32 @@
           <EntitySet Name="RESOURCE" EntityType="Self.RESOURCE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUBSCRIPTION" EntityType="Self.SUBSCRIPTION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEACHING" EntityType="Self.TEACHING" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__COURSE__ID_Coord__59FA5E80" Association="Self.FK__COURSE__ID_Coord__59FA5E80">
+          <AssociationSet Name="FK__COURSE__ID_Coord__06CD04F7" Association="Self.FK__COURSE__ID_Coord__06CD04F7">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="COURSE" EntitySet="COURSE" />
           </AssociationSet>
-          <AssociationSet Name="FK__SUBSCRIPT__ID_Co__60A75C0F" Association="Self.FK__SUBSCRIPT__ID_Co__60A75C0F">
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Co__0A9D95DB" Association="Self.FK__SUBSCRIPT__ID_Co__0A9D95DB">
             <End Role="COURSE" EntitySet="COURSE" />
             <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
           </AssociationSet>
-          <AssociationSet Name="FK__SUBSCRIPT__ID_CP__619B8048" Association="Self.FK__SUBSCRIPT__ID_CP__619B8048">
+          <AssociationSet Name="FK__SUBSCRIPT__ID_CP__0B91BA14" Association="Self.FK__SUBSCRIPT__ID_CP__0B91BA14">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
           </AssociationSet>
-          <AssociationSet Name="FK__SUBSCRIPT__ID_Re__5FB337D6" Association="Self.FK__SUBSCRIPT__ID_Re__5FB337D6">
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Re__09A971A2" Association="Self.FK__SUBSCRIPT__ID_Re__09A971A2">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACHING__ID_Cou__6A30C649" Association="Self.FK__TEACHING__ID_Cou__6A30C649">
+          <AssociationSet Name="FK__TEACHING__ID_Cou__10566F31" Association="Self.FK__TEACHING__ID_Cou__10566F31">
             <End Role="COURSE" EntitySet="COURSE" />
             <End Role="TEACHING" EntitySet="TEACHING" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACHING__ID_Res__693CA210" Association="Self.FK__TEACHING__ID_Res__693CA210">
+          <AssociationSet Name="FK__TEACHING__ID_Res__0F624AF8" Association="Self.FK__TEACHING__ID_Res__0F624AF8">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="TEACHING" EntitySet="TEACHING" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_SiWeb3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -192,6 +192,7 @@
           <NavigationProperty Name="SUBSCRIPTION" Relationship="Self.FK__SUBSCRIPT__ID_CP__619B8048" FromRole="RESOURCE" ToRole="SUBSCRIPTION" />
           <NavigationProperty Name="SUBSCRIPTION1" Relationship="Self.FK__SUBSCRIPT__ID_Re__5FB337D6" FromRole="RESOURCE" ToRole="SUBSCRIPTION" />
           <NavigationProperty Name="TEACHING" Relationship="Self.FK__TEACHING__ID_Res__693CA210" FromRole="RESOURCE" ToRole="TEACHING" />
+          <Property Name="IsTeacher" Type="Boolean" />
         </EntityType>
         <EntityType Name="SUBSCRIPTION">
           <Key>
@@ -349,6 +350,7 @@
           <EntitySetMapping Name="RESOURCE">
             <EntityTypeMapping TypeName="DB_SiWeb3Model.RESOURCE">
               <MappingFragment StoreEntitySet="RESOURCE">
+                <ScalarProperty Name="IsTeacher" ColumnName="IsTeacher" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

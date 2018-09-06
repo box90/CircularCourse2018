@@ -14,7 +14,6 @@ namespace Circolare2018.Entities
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using Circolare2018.Entities;
     
     public partial class DB_SiWeb3Entities : DbContext
     {

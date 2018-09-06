@@ -13,6 +13,7 @@ namespace Circolare2018.SL.Models
         public string Surname { get; set; }
         public Nullable<bool> IsAvaiable { get; set; }
         public Nullable<bool> IsCP { get; set; }
+        public Nullable<bool> IsTeacher { get; set; }
 
         public static ResourceModel MapModel(Entities.RESOURCE resource)
         {
@@ -23,7 +24,8 @@ namespace Circolare2018.SL.Models
                 Name = resource.Name,
                 Surname = resource.Surname,
                 IsAvaiable = resource.IsAvaiable,
-                IsCP = resource.IsCP
+                IsCP = resource.IsCP,
+                IsTeacher = resource.IsTeacher
             };
         }
 
@@ -36,7 +38,8 @@ namespace Circolare2018.SL.Models
                 Name = model.Name,
                 Surname = model.Surname,
                 IsAvaiable = model.IsAvaiable,
-                IsCP = model.IsCP
+                IsCP = model.IsCP,
+                IsTeacher = model.IsTeacher
             };
         }
     }
