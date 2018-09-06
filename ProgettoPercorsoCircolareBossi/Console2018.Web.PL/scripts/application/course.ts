@@ -168,7 +168,7 @@ function modalCreateSubscription(): void {
         })
     })
         .done(function (data) {
-        
+            _selfPageCourse.CleanAllCoursePage();
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while creating Subscription");
@@ -188,13 +188,33 @@ function ModalTeacherOfCourse(idCourse: number): TeacherMixed[] {
         });
     })
         .done(function (data) {
-            $('#IDCourseParameter4T').text($('#idCourse').val().toString());
+            $('#IDCourseParameter4T').text(idCourse);
         })
         .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Courses');
         });
 
     return tmp;
+}
+
+function modalCreateTeachingOfCourse(): void {
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:53141/api/teacher/insert',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            ID: '',
+            ID_Resource: $('#selectBoxResources4Teach').val(),
+            ID_Course: $('#idCourse4Teach').val(),
+            Notes: $('#notes4Teach').val()
+        })
+    })
+        .done(function (data) {
+            _selfPageCourse.CleanAllCoursePage();
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            alert("An error has occurred while creating Teaching");
+        });
 }
 //#endregion
 
@@ -251,6 +271,9 @@ function CleanAllCoursePage(): void {
     $('#startDate4Sub').val('');
     $('#admitted4Sub').prop('checked', false);
     $('#notes4Sub').val('');
+    //modalCreateTeach
+    $('#idCourse4Teach').val('');
+    $('#notes4Teach').val('');
 }
 
 
@@ -262,6 +285,7 @@ function PopulateDropdownResource(): void {
         var option = '';
         var optionCreate = '';
         var optionSubscription = '';
+        var optionTeacher = ''
         $.each(values, (i, elem: Resource) => {
             if (values[i].IsAvaiable) {
                 option += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
@@ -274,6 +298,10 @@ function PopulateDropdownResource(): void {
             if (values[i].IsCP) {
                 optionSubscription += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
             }
+            //add Teacher list for Modal Teaching
+            if (values[i].IsTeacher) {
+                optionTeacher += '<option value="' + values[i].ID + '">' + values[i].Name + ' ' + values[i].Surname + '</option>';
+            }
            
         });
         $('#selectBox').append(option);
@@ -281,6 +309,9 @@ function PopulateDropdownResource(): void {
         //append options for Modal SubscriptionCreate
         $('#selectBoxR4Sub').append(option);
         $('#selectBoxCP4Sub').append(optionSubscription);
+        //append options for Modal TeachingCreate
+        $('#selectBoxResources4Teach').append(optionTeacher);
+
     })
         .fail(function (jqXHR, textStatus, err) {
         alert('An error occurred while loading Resources');
@@ -322,7 +353,7 @@ function PrintSubMixed4Modal(elem: SubscriptionMixed): string {
         admitted = 'unchecked';
     }
 
-    result = '<td class="toBeFound" hidden>' + elem.ID + '</td>' + '<td>' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td>' + elem.StartDate.toString().substring(0, elem.StartDate.toString().indexOf('T')) + '</td>' + '<td>' + elem.MaxEndDate.toString().substring(0, elem.MaxEndDate.toString().indexOf('T')) + '<td><input type="checkbox" ' + admitted + ' disabled></td>';
+    result = '<td>' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td>' + elem.StartDate.toString().substring(0, elem.StartDate.toString().indexOf('T')) + '</td>' + '<td>' + elem.MaxEndDate.toString().substring(0, elem.MaxEndDate.toString().indexOf('T')) + '<td><input type="checkbox" ' + admitted + ' disabled></td>';
     return result;
 }
 
@@ -331,9 +362,14 @@ function PassIDCourseParameter(): void{
     $('#idCourse4Sub').val(Number(idC));
 }
 
+function PassIDCourseParameter4Teach(): void {
+    var idC = $('#IDCourseParameter4T').text();
+    $('#idCourse4Teach').val(Number(idC));
+}
+
 function PrintTeacher(elem: TeacherMixed): string {
     let res: string = '';
-    res = '<td> ' + elem.CourseModel.Title + '</td>' + '<td> ' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td> ' + elem.Notes + '</td>';
+    res = '<td>' + elem.ID + '</td><td> ' + elem.CourseModel.Title + '</td>' + '<td> ' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td> ' + elem.Notes + '</td>';
     return res;
 }
 //#endregion

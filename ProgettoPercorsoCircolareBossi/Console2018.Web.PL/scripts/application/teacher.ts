@@ -20,16 +20,33 @@ class TeacherMixed {
 
 //#region Variables
 const webApiUriTeacher: string = 'http://localhost:53141/api/teacher';
-let retrievedTeachers: Teacher[] = [];
+let _selfTeachPage = this;
 //#endregion
 
-//#Region API
-function GetTeachers(): Teacher[] {
-    let tmp: Teacher[] = [];
+//#Region Code
+$(document).ready(() => {
+    $('#loader').show();
+    $('#resume').hide();
+    CleanAllTeachingPage();
+    GetTeachers();
+});
+//#endregion
 
-    $.getJSON(webApiUriTeacher)
-        .done(function (courses: Teacher[]) {
-            tmp = courses;
+
+//#Region API
+function GetTeachers(): TeacherMixed[] {
+    let tmp: TeacherMixed[] = [];
+
+    $.getJSON(webApiUriTeacher,function (teaching: TeacherMixed[]) {
+        tmp = teaching;
+        $('#grid tbody').empty();
+        $.each(teaching, (i, elem: TeacherMixed) => {
+            $('#grid').append('<tr onclick="ClickDetailsT(this);">' + PrintTeachingT(elem) + '</tr>');
+        });
+    })
+        .done(function (data) {
+            $('#loader').hide();
+            $('#resume').show();
         })
         .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Teachers');
@@ -38,12 +55,24 @@ function GetTeachers(): Teacher[] {
     return tmp;
 }
 
-function GetTeacher(id: number): Teacher {
-    let tmp: Teacher = null;
+function GetTeacher(id: number): TeacherMixed {
+    let tmp: TeacherMixed = null;
 
-    $.getJSON(webApiUriTeacher + '/' + id)
-        .done(function (res: Teacher) {
-            tmp = res;
+    $.getJSON(webApiUriTeacher + '/' + id, function (res: string) {
+        tmp = JSON.parse(res);
+        if (tmp != null) {
+            $('#idTeaching').val(tmp.ID);
+            $('#idResource').val(tmp.ID_Resource);
+            $('#idCourse').val(tmp.ID_Course);
+            $('#titleCourse').val(tmp.CourseModel.Title);
+            $('#nameResource').val(tmp.ResourceModel.Name + ' ' + tmp.ResourceModel.Surname);
+            $('#notesTeach').val(tmp.Notes);
+        }
+        
+    })
+        .done(function (data) {
+            $('#updateButton').prop('disabled', false);
+            $('#deleteButton').prop('disabled', false);
         })
         .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Teacher ' + id);
@@ -52,64 +81,65 @@ function GetTeacher(id: number): Teacher {
     return tmp;
 }
 
-
-function createTeacher(): void {
-    $.ajax({
-        type: "POST",
-        url: webApiUriTeacher + '/insert',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            /*
-            UserTitleId: $('#select-user-titles').val(),
-            Username: $('#user-username').val(),
-            Surname: $('#user-surname').val(),
-            Name: $('#user-name').val()
-            */
-            //inserire i campi del form dei dettagli della risorsa
-        })
-    }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetTeachers();
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while creating Teacher");
-    });
-}
-
 function updateTeacher(): void {
     $.ajax({
         type: "PUT", //controllare se PUT
         url: webApiUriTeacher + '/update',
         contentType: 'application/json',
         data: JSON.stringify({
-            //inserire i campi del form dei dettagli della risorsa
+            ID: $('#idTeaching').val(),
+            ID_Resource:$('#idResource').val(),
+            ID_Course: $('#idCourse').val(),
+            Notes: $('#notesTeach').val()
         })
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetTeachers();
+        _selfTeachPage.CleanAllTeachingPage();
+        _selfTeachPage.GetTeachers();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("An error has occurred while updating Teacher");
     });
 }
 
 
-function deleteTeacher(resourceId: number): void {
-    if (!confirm('Remove Teacher?')) {
+function deleteTeacher(teachingId: number): void {
+    if (!confirm('Remove Teaching?')) {
         return;
     }
     $.ajax({
         type: "DELETE",
-        url: webApiUriTeacher + '/remove/' + resourceId,
+        url: webApiUriTeacher + '/remove/' + teachingId,
         contentType: 'application/json'
     }).done(function (data) {
-        //console.log(JSON.stringify(data));
-        this.GetTeachers();
+        _selfTeachPage.CleanAllTeachingPage();
+        _selfTeachPage.GetTeachers();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while deleting Teacher " + resourceId);
+        alert("An error has occurred while deleting Teaching " + teachingId);
     });
 }
 //#endregion
 
 
 //#Region otherFunctions
+function PrintTeachingT(elem: TeacherMixed): string {
+    var res: string = '';
+    res = '<td class="toBeFound">' + elem.ID + '</td><td>' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td><td>' + elem.CourseModel.Title + '</td>';
+    return res;
+}
 
+function ClickDetailsT(x: HTMLTableRowElement): void {
+    var row = $(x).closest("tr");    // Find the row
+    var id = row.find(".toBeFound").text(); // Find the text
+    //alert(id);
+    GetTeacher(Number(id));
+}
+
+function CleanAllTeachingPage(): void {
+    $('#idTeaching').val('');
+    $('#titleCourse').val('');
+    $('#nameResource').val('');
+    $('#notesTeach').val('');
+    //buttons
+    $('#updateButton').prop('disabled', true);
+    $('#deleteButton').prop('disabled', true);
+}
 //#endregion

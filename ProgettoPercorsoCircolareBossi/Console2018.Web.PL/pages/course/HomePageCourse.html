@@ -60,7 +60,7 @@
             </div>
             <table class="col-xl-12" style="vertical-align:top">
                 <tr>
-                    <td>
+                    <td style="vertical-align:top">
                         <!-- List of elements -->
                         <div id="list" class="">
                             <table id="grid" class="table table-hover">
@@ -80,7 +80,7 @@
                     <td>
                         <!--Space between-->
                     </td>
-                    <td>
+                    <td style="vertical-align:top">
                         <!-- Element Details -->
                         <div id="details" class="container" style="vertical-align:top">
                             <form>
@@ -220,7 +220,6 @@
                         <table id="gridSubscriptionModal" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th hidden>ID</th>
                                     <th>Resource</th>
                                     <th>StartDate</th>
                                     <th>MaxEndDate</th>
@@ -256,18 +255,24 @@
                                 <input type="number" class="form-control" id="idCourse4Sub" disabled />
                             </div>
                             <div class="form-group row">
-                                <!--DropDown for Resources-->
-                                <label for="selectBoxR4Sub">Resource</label>
-                                <select id="selectBoxR4Sub" name="selectBoxR4Sub" class="dropdown-toggle">
-                                    <option value="" selected></option>
-                                </select>
-                            </div>
-                            <div class="form-group row">
-                                <!--DropDown for CP_Resources-->
-                                <label for="selectBoxCP4Sub">CP</label>
-                                <select id="selectBoxCP4Sub" name="selectBoxCP4Sub" class="dropdown-toggle">
-                                    <option value="" selected></option>
-                                </select>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="container">
+                                                <!--DropDown for Resources-->
+                                                <label for="selectBoxR4Sub">Resource</label>
+                                                <select id="selectBoxR4Sub" name="selectBoxR4Sub" class="dropdown-toggle"></select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="container">
+                                                <!--DropDown for CP_Resources-->
+                                                <label for="selectBoxCP4Sub">CP</label>
+                                                <select id="selectBoxCP4Sub" name="selectBoxCP4Sub" class="dropdown-toggle"></select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>   
                             </div>
                             <div class="form-group row">
                                 <label for="startDate4Sub">StartDate</label>
@@ -310,6 +315,7 @@
                         <table id="gridTeachModal" class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Course</th>
                                     <th>Resource</th>
                                     <th>Note</th>
@@ -320,12 +326,46 @@
                     </div>
                     <div class="modal-footer">
                         <button id="" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#" onclick="" data-dismiss="modal">New Teaching</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalTeachingCreate" onclick="PassIDCourseParameter4Teach();" data-dismiss="modal">New Teaching</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Modal Create Teaching for Course-->
+        <div class="modal fade" id="ModalTeachingCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">Create Teaching</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row" hidden>
+                                <label for="idCourse4Teach">IDCourse</label>
+                                <input type="number" class="form-control" id="idCourse4Teach" disabled />
+                            </div>
+                            <div class="form-group row">
+                                <!--DropDown for Courses-->
+                                <label for="selectBoxResources4Teach">Teachers</label>
+                                <select id="selectBoxResources4Teach" name="selectBoxResources4Teach" class="dropdown-toggle"></select>
+                            </div>
+                            <div class="form-group row">
+                                <label for="notes4Teach">Notes</label>
+                                <input type="text" class="form-control" id="notes4Teach" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="buttonCloseModalTeachCreate" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
+                        <button type="button" id="buttonCreateModalTeach"  class="btn btn-success" onclick="modalCreateTeachingOfCourse();" data-dismiss="modal">Add Teach</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </main>

@@ -12,14 +12,12 @@
     <!-- Bootstrap core CSS -->
     <link href="../../Content/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Circolare2018</a>
+        <a class="navbar-brand" href="../../index.html">Circolare2018</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,34 +48,66 @@
             </div>
         </div>
 
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-3">
-                    <h2>Resources</h2>
-                    <p>Risorse</p>
-                    <p><a class="btn btn-secondary" href="pages/resource/HomePageResource.html" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h2>Courses</h2>
-                    <p>Percorsi</p>
-                    <p><a class="btn btn-secondary" href="pages/course/HomePageCourse.html" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h2>Subscriptions</h2>
-                    <p>Iscrizioni</p>
-                    <p><a class="btn btn-secondary" href="pages/subscriptions/HomePageSubscriptions.html" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h2>Teachers</h2>
-                    <p>Insegnanti</p>
-                    <p><a class="btn btn-secondary" href="pages/teachers/HomePageTeachers.html" role="button">View details &raquo;</a></p>
-                </div>
-            </div>
+        <div id="loader" style="align-self:center;align-content:center">
+            <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif">
+        </div>
 
-            <hr>
+        <div id="resume" class="container">
+            <table class="col-xl-12" style="vertical-align:top">
+                <tr>
+                    <td style="vertical-align:top">
+                        <!-- List of elements -->
+                        <div id="list" class="">
+                            <table id="grid" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Teacher</th>
+                                        <th>Course</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        <!--Space between-->
+                    </td>
+                    <td style="vertical-align:top">
+                        <!-- Element Details -->
+                        <div id="details" class="container" style="vertical-align:top">
+                            <form>
+                                <div class="form-group row">
+                                    <label for="idTeaching">ID</label>
+                                    <input type="number" class="form-control" id="idTeaching" disabled />
+                                </div>
+                                <div class="form-group row">
+                                    <input type="number" class="form-control" id="idResource" hidden />
+                                    <label for="nameResource">Teacher</label>
+                                    <input type="text" class="form-control" id="nameResource" disabled />
+                                </div>
+                                <div class="form-group row">
+                                    <input type="number" class="form-control" id="idCourse" hidden />
+                                    <label for="titleCourse">Course</label>
+                                    <input type="text" class="form-control" id="titleCourse" disabled />
+                                </div>
+                                <div class="form-group row">
+                                    <label for="notesTeach">Note</label>
+                                    <input type="text" class="form-control" id="notesTeach" />
+                                </div>
+                                <div class="form-check">
+                                    <button id="updateButton" type="button" class="btn btn-outline-warning" onclick="updateTeacher();">Update</button>
+                                    <button id="deleteButton" type="button" class="btn btn-outline-danger" onclick="deleteTeacher($('#idTeaching').val());">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-        </div> <!-- /container -->
+        <hr>
+        
 
     </main>
 
@@ -88,10 +118,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../script/jquery-3.3.1.slim.min.js"><\/script>')</script>
+    <script src="../../scripts/jquery-3.3.1.min.js"></script>
     <script src="../../scripts/bootstrap.min.js"></script>
-
+    <script src="../../scripts/application/teacher.js"></script>
 
 
 

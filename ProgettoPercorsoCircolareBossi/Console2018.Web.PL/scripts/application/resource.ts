@@ -76,7 +76,9 @@ function GetResource(id: number): Resource {
         .done(function (data) {
             $('#updateButton').prop('disabled', false);
             $('#deleteButton').prop('disabled', false);
-            $('#modalTeachingListButton').prop('disabled', false);
+            if (tmp.IsTeacher) {
+                $('#modalTeachingListButton').prop('disabled', false);
+            }
     })
         .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Resource ' + id);
@@ -234,7 +236,7 @@ function CleanAll(): void {
 
 function PrintTeaching(elem: TeacherMixed): string {
     let res: string = '';
-    res = '<td> ' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td>' + elem.CourseModel.Title + '</td>' + '<td> ' + elem.Notes + '</td>';
+    res = '<td>' + elem.ID + '</td><td> ' + (elem.ResourceModel.Name + ' ' + elem.ResourceModel.Surname) + '</td>' + '<td>' + elem.CourseModel.Title + '</td>' + '<td> ' + elem.Notes + '</td>';
     return res;
 }
 
@@ -245,7 +247,7 @@ function PopulateDropdownCourses(): void {
         values = course;
         var option = '';
         $.each(values, (i, elem: Course) => {
-            option += '<option value="' + values[i].ID + '">' + values[i].Title + ' ' + values[i].RefYear.toString() + '</option>';
+            option += '<option value="' + values[i].ID + '">' + values[i].Title + ' (Anno: ' + values[i].RefYear.toString() + ')</option>';
             
         });
         $('#selectBoxCourse4Teach').append(option);

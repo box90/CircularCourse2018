@@ -60,7 +60,7 @@
             </div>
             <table class="col-xl-12" style="vertical-align:top">
                 <tr>
-                    <td>
+                    <td style="vertical-align:top">
                         <!-- List of elements -->
                         <div id="list" class="">
                             <table id="grid" class="table table-hover">
@@ -78,7 +78,7 @@
                     <td>
                         <!--Space between-->
                     </td>
-                    <td>
+                    <td style="vertical-align:top">
                         <!-- Element Details -->
                         <div id="details" class="container" style="vertical-align:top">
                             <form>
@@ -203,6 +203,7 @@
                         <table id="gridTeachModal" class="table table-hover">
                             <thead>
                                 <tr>
+                                    <td>ID</td>
                                     <th>Resource</th>
                                     <th>Course</th>
                                     <th>Note</th>
@@ -233,7 +234,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group row" hidden>
-                                <label for="idResource4Teach">IDCourse</label>
+                                <label for="idResource4Teach">IDResource</label>
                                 <input type="number" class="form-control" id="idResource4Teach" disabled />
                             </div>
                             <div class="form-group row">
@@ -250,7 +251,7 @@
                     </div>
                     <div class="modal-footer">
                         <button id="buttonCloseModalTeachCreate" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
-                        <button type="button" id="buttonCreateModalTeach" type="button" class="btn btn-success" onclick="modalCreateTeachingOfResource();" data-dismiss="modal">Add Teach</button>
+                        <button type="button" id="buttonCreateModalTeach"  class="btn btn-success" onclick="modalCreateTeachingOfResource();" data-dismiss="modal">Add Teach</button>
                     </div>
                 </div>
             </div>
