@@ -53,11 +53,6 @@
         </div>
 
         <div id="resume" class="container">
-            <div id="buttonOpenCreate">
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#ModalCreate">
-                    New Subscription
-                </button>
-            </div>
             <table class="col-xl-12" style="vertical-align:top">
                 <tr>
                     <td style="vertical-align:top">
@@ -114,7 +109,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="startDate">StartDate</label>
-                                    <input type="date" class="form-control" id="startDate" />
+                                    <input type="date" class="form-control" id="startDate" required/>
                                 </div>
                                 <div class="form-group row">
                                     <label for="maxEndDate">MaxEndDate</label>
@@ -144,28 +139,7 @@
         </div>
 
         <hr>
-        <!-- Modal -->
-        <div class="modal fade" id="ModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Create Resource</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="details" class="container" style="vertical-align:top">
-                            <!-- Modal Form -->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="buttonClose" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">Close</button>
-                        <button id="buttonCreate" type="button" class="btn btn-success" onclick="" data-dismiss="modal">Create</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
     </main>
 

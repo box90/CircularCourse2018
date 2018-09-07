@@ -71,6 +71,14 @@ function GetResource(id) {
 }
 //Post
 function createResource() {
+    //var myForm = <HTMLFormElement>(document.getElementById('formResourceCreate'));
+    //
+    //if (!myForm[0].checkValidity()) {
+    //  // If the form is invalid, submit it. The form won't actually submit;
+    //  // this will just cause the browser to display the native HTML5 error messages.
+    //    $('#submitCreate').click();
+    //}
+    //else {
     $.ajax({
         type: "POST",
         url: webApiUri + '/resource/insert',
@@ -84,12 +92,12 @@ function createResource() {
             IsTeacher: $('#teacherCreate').prop('checked')
         })
     }).done(function (data) {
-        //$('#ModalCreate').modal('hide');
         _self.CleanAll();
         _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while creating Resource");
+        alert("An error has occurred while creating Resource\n" + errorThrown);
     });
+    //}
 }
 //Update
 function updateResource() {

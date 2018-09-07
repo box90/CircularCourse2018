@@ -89,25 +89,33 @@ function GetResource(id: number): Resource {
 
 //Post
 function createResource(): void {
-    $.ajax({
-        type: "POST",
-        url: webApiUri + '/resource/insert',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            ID: $('#idCreate').val(),
-            Name: $('#nameCreate').val(),
-            Surname: $('#surnameCreate').val(),
-            IsAvaiable: $('#avaiableCreate').prop('checked'),
-            IsCp: $('#cpCreate').prop('checked'),
-            IsTeacher: $('#teacherCreate').prop('checked') 
-        })
-    }).done(function (data) {
-        //$('#ModalCreate').modal('hide');
-        _self.CleanAll();
-        _self.GetResources();
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while creating Resource");
-    });
+
+    //var myForm = <HTMLFormElement>(document.getElementById('formResourceCreate'));
+    //
+    //if (!myForm[0].checkValidity()) {
+    //    $('#submitCreate').click();
+    //}
+    //else {
+        $.ajax({
+                type: "POST",
+                url: webApiUri + '/resource/insert',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    ID: $('#idCreate').val(),
+                    Name: $('#nameCreate').val(),
+                    Surname: $('#surnameCreate').val(),
+                    IsAvaiable: $('#avaiableCreate').prop('checked'),
+                    IsCp: $('#cpCreate').prop('checked'),
+                    IsTeacher: $('#teacherCreate').prop('checked') 
+                })
+            }).done(function (data) {
+                _self.CleanAll();
+                _self.GetResources();
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert("An error has occurred while creating Resource\n" + errorThrown);
+            });
+    //}
+   
 }
 
 //Update

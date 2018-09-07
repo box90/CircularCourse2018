@@ -96,7 +96,7 @@ function updateTeacher(): void {
         _selfTeachPage.CleanAllTeachingPage();
         _selfTeachPage.GetTeachers();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while updating Teacher");
+        alert("An error has occurred while updating Teacher" );
     });
 }
 
