@@ -52,7 +52,7 @@
           <Property Name="ID_Course" Type="int" Nullable="false" />
           <Property Name="Notes" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK__COURSE__ID_Coord__06CD04F7">
+        <Association Name="FK__COURSE__ID_Coord__236943A5">
           <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="0..1" />
           <End Role="COURSE" Type="Self.COURSE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -64,8 +64,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SUBSCRIPT__ID_Co__0A9D95DB">
-          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+        <Association Name="FK__SUBSCRIPT__ID_Co__30C33EC3">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="COURSE">
@@ -76,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SUBSCRIPT__ID_CP__0B91BA14">
+        <Association Name="FK__SUBSCRIPT__ID_CP__31B762FC">
           <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
           <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -88,8 +90,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SUBSCRIPT__ID_Re__09A971A2">
-          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+        <Association Name="FK__SUBSCRIPT__ID_Re__2FCF1A8A">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RESOURCE">
@@ -100,8 +104,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACHING__ID_Cou__10566F31">
-          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+        <Association Name="FK__TEACHING__ID_Cou__367C1819">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="COURSE">
@@ -112,8 +118,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACHING__ID_Res__0F624AF8">
-          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1" />
+        <Association Name="FK__TEACHING__ID_Res__3587F3E0">
+          <End Role="RESOURCE" Type="Self.RESOURCE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TEACHING" Type="Self.TEACHING" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RESOURCE">
@@ -133,27 +141,27 @@
           <EntitySet Name="RESOURCE" EntityType="Self.RESOURCE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUBSCRIPTION" EntityType="Self.SUBSCRIPTION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEACHING" EntityType="Self.TEACHING" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__COURSE__ID_Coord__06CD04F7" Association="Self.FK__COURSE__ID_Coord__06CD04F7">
+          <AssociationSet Name="FK__COURSE__ID_Coord__236943A5" Association="Self.FK__COURSE__ID_Coord__236943A5">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="COURSE" EntitySet="COURSE" />
           </AssociationSet>
-          <AssociationSet Name="FK__SUBSCRIPT__ID_Co__0A9D95DB" Association="Self.FK__SUBSCRIPT__ID_Co__0A9D95DB">
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Co__30C33EC3" Association="Self.FK__SUBSCRIPT__ID_Co__30C33EC3">
             <End Role="COURSE" EntitySet="COURSE" />
             <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
           </AssociationSet>
-          <AssociationSet Name="FK__SUBSCRIPT__ID_CP__0B91BA14" Association="Self.FK__SUBSCRIPT__ID_CP__0B91BA14">
+          <AssociationSet Name="FK__SUBSCRIPT__ID_CP__31B762FC" Association="Self.FK__SUBSCRIPT__ID_CP__31B762FC">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
           </AssociationSet>
-          <AssociationSet Name="FK__SUBSCRIPT__ID_Re__09A971A2" Association="Self.FK__SUBSCRIPT__ID_Re__09A971A2">
+          <AssociationSet Name="FK__SUBSCRIPT__ID_Re__2FCF1A8A" Association="Self.FK__SUBSCRIPT__ID_Re__2FCF1A8A">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACHING__ID_Cou__10566F31" Association="Self.FK__TEACHING__ID_Cou__10566F31">
+          <AssociationSet Name="FK__TEACHING__ID_Cou__367C1819" Association="Self.FK__TEACHING__ID_Cou__367C1819">
             <End Role="COURSE" EntitySet="COURSE" />
             <End Role="TEACHING" EntitySet="TEACHING" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACHING__ID_Res__0F624AF8" Association="Self.FK__TEACHING__ID_Res__0F624AF8">
+          <AssociationSet Name="FK__TEACHING__ID_Res__3587F3E0" Association="Self.FK__TEACHING__ID_Res__3587F3E0">
             <End Role="RESOURCE" EntitySet="RESOURCE" />
             <End Role="TEACHING" EntitySet="TEACHING" />
           </AssociationSet>

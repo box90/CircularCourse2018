@@ -31,15 +31,15 @@ create table [COURSE]
 	StartDate		datetime,
 	EndDate			datetime,
 	IsCircular		bit default 0,
-	ID_Coordinator	int foreign key references [Resource](ID)
+	ID_Coordinator	int foreign key references [Resource](ID) on delete set null
 )
 
 create table [SUBSCRIPTION]
 (
 	ID				int identity(1,1) primary key,
-	ID_Resource		int	not null foreign key references [Resource](ID),
-	ID_Course		int not null foreign key references [Course](ID),
-	ID_CP			int not null foreign key references [Resource](ID),
+	ID_Resource		int	not null foreign key references [Resource](ID) on delete cascade,
+	ID_Course		int not null foreign key references [Course](ID) on delete cascade,
+	ID_CP			int not null foreign key references [Resource](ID) on delete no action,
 	StartDate		datetime not null,
 	MaxEndDate		as DATEADD(month,18,StartDate),
 	IsAdmitted		bit default 0,
@@ -49,7 +49,7 @@ create table [SUBSCRIPTION]
 create table [TEACHING]
 (
 	ID				int identity(1,1) primary key,
-	ID_Resource		int	not null foreign key references [Resource](ID),
-	ID_Course		int not null foreign key references [Course](ID),
+	ID_Resource		int	not null foreign key references [Resource](ID) on delete cascade,
+	ID_Course		int not null foreign key references [Course](ID) on delete cascade,
 	Notes			varchar(max)
 )

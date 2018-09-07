@@ -78,13 +78,23 @@ namespace Circolare2018.BL
             bool resultOperation = false;
 
             EFRepository<Entities.RESOURCE> repo = new EFRepository<Entities.RESOURCE>();
+            EFRepository<Entities.SUBSCRIPTION> repoSub = new EFRepository<Entities.SUBSCRIPTION>();
+
             Entities.RESOURCE exists = repo.FindNoTracking(x => x.ID == Id).FirstOrDefault();
+            List<Entities.SUBSCRIPTION> subCPList = repoSub.FindNoTracking(s => s.ID_CP == Id).ToList();
 
             if (exists != null)
             {
                 try
                 {
                     repo.Delete(exists);
+
+                    //cancello anche le sottoscrizioni confermate dalla risorsa rimossa, se è CP
+                    foreach (Entities.SUBSCRIPTION sub in subCPList)
+                    {
+                        repoSub.Delete(sub);
+                    }
+
                     DAL.GlobalUnitOfWork.Commit();
                     resultOperation = true;
                 }
