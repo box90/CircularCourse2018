@@ -1,6 +1,4 @@
-﻿//import * as SHARED from './shared'
-
-//#region Classes
+﻿//#region Classes
 class Resource {
     public ID: number;
     public UserName: string;
@@ -15,7 +13,6 @@ class Resource {
 
 //#region Variables
 const webApiUri: string = 'http://localhost:53141/api';
-//let webApiUri: string = SHARED.webApiUri;
 let _self = this;
 //#endregion
 
@@ -49,11 +46,11 @@ function GetResources(): Resource[] {
     .done(function (data) {
         $('#loader').hide();
         $('#resume').show();
+       
     })
     .fail(function (jqXHR, textStatus, err) {
             alert('An error occurred while loading Resources');
         });
-
     return tmp;
 }
 
@@ -89,13 +86,15 @@ function GetResource(id: number): Resource {
 
 //Post
 function createResource(): void {
+    let isString: boolean = false;
 
-    //var myForm = <HTMLFormElement>(document.getElementById('formResourceCreate'));
-    //
-    //if (!myForm[0].checkValidity()) {
-    //    $('#submitCreate').click();
-    //}
-    //else {
+    isString = $.isNumeric($('#idCreate').val());
+
+    if (!isString) {
+        alert("ID must be a Number!")
+    }
+    else {
+
         $.ajax({
                 type: "POST",
                 url: webApiUri + '/resource/insert',
@@ -111,11 +110,10 @@ function createResource(): void {
             }).done(function (data) {
                 _self.CleanAll();
                 _self.GetResources();
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    alert("An error has occurred while creating Resource\n" + errorThrown);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert("An error has occurred while creating Resource\n" + errorThrown + "\n" + jqXHR.responseText);
             });
-    //}
-   
+    }   
 }
 
 //Update
@@ -137,7 +135,7 @@ function updateResource(): void {
         _self.CleanAll();
         _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while updating Resource");
+        alert("An error has occurred while updating Resource\n" + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 
@@ -154,7 +152,7 @@ function DeleteResource(resourceId: number): void {
         _self.CleanAll();
         _self.GetResources();
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            alert("An error has occurred while deleting Resource " + resourceId);
+            alert("An error has occurred while deleting Resource " + resourceId + "\n" + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 
@@ -174,7 +172,7 @@ function ModalTeacherOfResource(idResource: number): TeacherMixed[] {
             $('#IDResourceParameter4T').text($('#id').val().toString());
         })
         .fail(function (jqXHR, textStatus, err) {
-            alert('An error occurred while loading Courses');
+            alert('An error occurred while loading Courses\n' + err + "\n" + jqXHR.responseText);
         });
 
     return tmp;
@@ -270,4 +268,14 @@ function PassIDResourceParameter(): void {
     $('#idResource4Teach').val(Number(idC));
 }
 
+function CheckID(resources: Resource[], id: number): boolean {
+    let res: boolean = true;
+
+    for (var i = 0; i < resources.length; i++) {
+        if (resources[i].ID == id) {
+            res = false;
+        }
+    }
+    return res;
+}
 //#endregion

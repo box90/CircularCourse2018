@@ -39,7 +39,7 @@ function LoadAll() {
         $('#resume').show();
     })
         .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Subscriptions');
+        alert('An error occurred while loading Subscriptions\n' + err + "\n" + jqXHR.responseText);
     });
     return tmp;
 }
@@ -57,7 +57,7 @@ function GetSubscriptions() {
         $('#resume').show();
     })
         .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Subscriptions');
+        alert('An error occurred while loading Subscriptions\n' + err + "\n" + jqXHR.responseText);
     });
     return tmp;
 }
@@ -84,7 +84,7 @@ function GetSubscriptionMixed(id) {
         $('#deleteButton').prop('disabled', false);
     })
         .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Subscription ' + id);
+        alert('An error occurred while loading Subscription ' + id + '\n' + err + "\n" + jqXHR.responseText);
     });
     return tmp;
 }
@@ -106,7 +106,7 @@ function createSubscription() {
         //console.log(JSON.stringify(data));
         this.GetSubscriptions();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while creating Subscription");
+        alert('An error has occurred while creating Subscription\n' + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 function updateSubscription() {
@@ -143,7 +143,7 @@ function deleteSubscription(resourceId) {
         _selfSubPage.CleanAllSubPage();
         _selfSubPage.LoadAll();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while deleting Subscription " + resourceId);
+        alert("An error has occurred while deleting Subscription " + resourceId + '\n' + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 //#endregion

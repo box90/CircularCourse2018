@@ -107,8 +107,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+            return BadRequest($"Cannot update Subscription, ID: {subToUpdate.ID}. Check parameters");
         }
 
         [HttpPost]
@@ -120,8 +119,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+            return BadRequest($"Cannot insert Subscription, ID: {subToInsert.ID}. Check parameters");
         }
 
         [HttpDelete]

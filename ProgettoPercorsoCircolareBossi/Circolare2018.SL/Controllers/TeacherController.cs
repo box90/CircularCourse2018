@@ -80,8 +80,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+             return BadRequest($"Cannot update Teaching, ID: {teachToUpdate.ID}. Check parameters");
         }
 
         [HttpPost]
@@ -93,8 +92,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+            return BadRequest($"Cannot insert Teaching, ID: {teachToInsert.ID}. Check parameters");
         }
 
         [HttpDelete]
@@ -106,7 +104,6 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
             return NotFound();
         }
     }

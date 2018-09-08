@@ -34,7 +34,7 @@ function GetCourses() {
         $('#resume').show();
     })
         .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Courses');
+        alert('An error occurred while loading Courses\n' + err + "\n" + jqXHR.responseText);
     });
     return tmp;
 }
@@ -63,7 +63,7 @@ function GetCourse(id) {
         $('#selectBox').prop('disabled', false);
     })
         .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Course ' + id);
+        alert('An error occurred while loading Course ' + id + '\n' + err + "\n" + jqXHR.responseText);
     });
     return tmp;
 }
@@ -86,7 +86,7 @@ function createCourse() {
         _selfPageCourse.CleanAllCoursePage();
         _selfPageCourse.GetCourses();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while creating Course");
+        alert('An error has occurred while creating Course\n' + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 function updateCourse() {
@@ -110,7 +110,7 @@ function updateCourse() {
         _selfPageCourse.CleanAllCoursePage();
         _selfPageCourse.GetCourses();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while updating Course");
+        alert('An error has occurred while updating Course\n' + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 function deleteCourse(courseId) {
@@ -125,7 +125,7 @@ function deleteCourse(courseId) {
         _selfPageCourse.CleanAllCoursePage();
         _selfPageCourse.GetCourses();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while deleting Course " + courseId);
+        alert("An error has occurred while deleting Course " + courseId + '\n' + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 //API SUBSCRIPTION
@@ -186,7 +186,7 @@ function modalCreateTeachingOfCourse() {
         _selfPageCourse.CleanAllCoursePage();
     })
         .fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while creating Teaching");
+        alert('An error has occurred while creating Teaching\n' + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 //#endregion

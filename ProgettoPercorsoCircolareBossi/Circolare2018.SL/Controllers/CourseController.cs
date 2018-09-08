@@ -45,8 +45,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+            return BadRequest($"Cannot update Course, Title: {courseToUpdate.Title}. Check parameters");
         }
 
         [HttpPost]
@@ -58,8 +57,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+            return BadRequest($"Cannot insert Course, Title: {courseToInsert.Title}. Check parameters");
         }
 
         [HttpDelete]
@@ -71,7 +69,6 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
             return NotFound();
         }
     }

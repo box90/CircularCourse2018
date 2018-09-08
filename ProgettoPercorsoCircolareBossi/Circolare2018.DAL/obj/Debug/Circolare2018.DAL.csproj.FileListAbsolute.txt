@@ -1,4 +1,3 @@
-C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\obj\Debug\Circolare2018.DAL.csproj.CoreCompileInputs.cache
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\bin\Debug\Circolare2018.DAL.dll.config
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\bin\Debug\Circolare2018.DAL.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\bin\Debug\Circolare2018.DAL.pdb
@@ -10,6 +9,7 @@ C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircol
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\bin\Debug\EntityFramework.xml
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\obj\Debug\Circolare2018.DAL.csprojAssemblyReference.cache
+C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\obj\Debug\Circolare2018.DAL.csproj.CoreCompileInputs.cache
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\obj\Debug\Circolare2018.DAL.csproj.CopyComplete
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\obj\Debug\Circolare2018.DAL.dll
 C:\Users\bossima1\Desktop\PercorsoCircolare\ProgettoBossi\ProgettoPercorsoCircolareBossi\Circolare2018.DAL\obj\Debug\Circolare2018.DAL.pdb

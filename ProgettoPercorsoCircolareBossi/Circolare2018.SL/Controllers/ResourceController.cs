@@ -74,8 +74,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+            return BadRequest($"Cannot update Resource, ID: {model.ID}. Check parameters");
         }
 
         [HttpPost]
@@ -87,8 +86,7 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
-            return NotFound();
+            return BadRequest($"Cannot insert Resource,  ID: {modelToInsert.ID}. Check if ID already Exists");
         }
 
         [HttpDelete]
@@ -100,7 +98,6 @@ namespace Circolare2018.SL.Controllers
             {
                 return Ok();
             }
-            //Trovare un Return decente
             return NotFound();
         }
     }

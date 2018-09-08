@@ -38,7 +38,7 @@ function GetTeachers() {
         $('#resume').show();
     })
         .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Teachers');
+        alert('An error occurred while loading Teachers\n' + err + "\n" + jqXHR.responseText);
     });
     return tmp;
 }
@@ -94,7 +94,7 @@ function deleteTeacher(teachingId) {
         _selfTeachPage.CleanAllTeachingPage();
         _selfTeachPage.GetTeachers();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while deleting Teaching " + teachingId);
+        alert("An error has occurred while deleting Teaching " + teachingId + '\n' + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 //#endregion

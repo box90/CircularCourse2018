@@ -1,4 +1,3 @@
-//import * as SHARED from './shared'
 //#region Classes
 var Resource = /** @class */ (function () {
     function Resource() {
@@ -8,7 +7,6 @@ var Resource = /** @class */ (function () {
 //#endregion
 //#region Variables
 var webApiUri = 'http://localhost:53141/api';
-//let webApiUri: string = SHARED.webApiUri;
 var _self = this;
 //#endregion
 //#region Code
@@ -71,31 +69,31 @@ function GetResource(id) {
 }
 //Post
 function createResource() {
-    //var myForm = <HTMLFormElement>(document.getElementById('formResourceCreate'));
-    //
-    //if (!myForm[0].checkValidity()) {
-    //    $('#submitCreate').click();
-    //}
-    //else {
-    $.ajax({
-        type: "POST",
-        url: webApiUri + '/resource/insert',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            ID: $('#idCreate').val(),
-            Name: $('#nameCreate').val(),
-            Surname: $('#surnameCreate').val(),
-            IsAvaiable: $('#avaiableCreate').prop('checked'),
-            IsCp: $('#cpCreate').prop('checked'),
-            IsTeacher: $('#teacherCreate').prop('checked')
-        })
-    }).done(function (data) {
-        _self.CleanAll();
-        _self.GetResources();
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while creating Resource\n" + errorThrown);
-    });
-    //}
+    var isString = false;
+    isString = $.isNumeric($('#idCreate').val());
+    if (!isString) {
+        alert("ID must be a Number!");
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: webApiUri + '/resource/insert',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                ID: $('#idCreate').val(),
+                Name: $('#nameCreate').val(),
+                Surname: $('#surnameCreate').val(),
+                IsAvaiable: $('#avaiableCreate').prop('checked'),
+                IsCp: $('#cpCreate').prop('checked'),
+                IsTeacher: $('#teacherCreate').prop('checked')
+            })
+        }).done(function (data) {
+            _self.CleanAll();
+            _self.GetResources();
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert("An error has occurred while creating Resource\n" + errorThrown + "\n" + jqXHR.responseText);
+        });
+    }
 }
 //Update
 function updateResource() {
@@ -116,7 +114,7 @@ function updateResource() {
         _self.CleanAll();
         _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while updating Resource");
+        alert("An error has occurred while updating Resource\n" + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 //Delese
@@ -132,7 +130,7 @@ function DeleteResource(resourceId) {
         _self.CleanAll();
         _self.GetResources();
     }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("An error has occurred while deleting Resource " + resourceId);
+        alert("An error has occurred while deleting Resource " + resourceId + "\n" + errorThrown + "\n" + jqXHR.responseText);
     });
 }
 //API TEACHER
@@ -149,7 +147,7 @@ function ModalTeacherOfResource(idResource) {
         $('#IDResourceParameter4T').text($('#id').val().toString());
     })
         .fail(function (jqXHR, textStatus, err) {
-        alert('An error occurred while loading Courses');
+        alert('An error occurred while loading Courses\n' + err + "\n" + jqXHR.responseText);
     });
     return tmp;
 }
@@ -231,6 +229,15 @@ function PopulateDropdownCourses() {
 function PassIDResourceParameter() {
     var idC = $('#IDResourceParameter4T').text();
     $('#idResource4Teach').val(Number(idC));
+}
+function CheckID(resources, id) {
+    var res = true;
+    for (var i = 0; i < resources.length; i++) {
+        if (resources[i].ID == id) {
+            res = false;
+        }
+    }
+    return res;
 }
 //#endregion
 //# sourceMappingURL=resource.js.map
